@@ -1,7 +1,7 @@
 {
   "version": 2,
   "buildCommand": "npm run vercel-build",
-  "outputDirectory": "client/dist",
+  "outputDirectory": "public",
   "routes": [
     {
       "src": "/api/(.*)",
@@ -21,43 +21,43 @@
     },
     {
       "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|webp|mp3|wasm))",
-      "dest": "/client/public/$1"
+      "dest": "/public/$1"
     },
     {
       "src": "/",
-      "dest": "/client/public/apps/homepage.html"
+      "dest": "/public/apps/homepage.html"
     },
     {
       "src": "/analysis",
-      "dest": "/client/public/apps/features/analysis.html"
+      "dest": "/public/apps/features/analysis.html"
     },
     {
       "src": "/archive",
-      "dest": "/client/public/apps/features/archive.html"
+      "dest": "/public/apps/features/archive.html"
     },
     {
       "src": "/news",
-      "dest": "/client/public/apps/features/news.html"
+      "dest": "/public/apps/features/news.html"
     },
     {
       "src": "/tutorials",
-      "dest": "/client/public/apps/tutorials.html"
+      "dest": "/public/apps/tutorials.html"
     },
     {
       "src": "/openings",
-      "dest": "/client/public/apps/openings.html"
+      "dest": "/public/apps/openings.html"
     },
     {
       "src": "/signin",
-      "dest": "/client/public/apps/account/signin.html"
+      "dest": "/public/apps/account/signin.html"
     },
     {
       "src": "/settings",
-      "dest": "/client/public/apps/settings.html"
+      "dest": "/public/apps/settings.html"
     },
     {
       "src": "/(.*)",
-      "dest": "/client/public/apps/unfound.html"
+      "dest": "/public/apps/unfound.html"
     }
   ],
   "functions": {

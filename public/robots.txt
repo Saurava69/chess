@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# Allow crawling of all static assets
+Allow: /img/
+Allow: /fonts/
+Allow: /css/
+Allow: /js/
+
+# Block crawling of private/internal pages
+Disallow: /internal/
+Disallow: /settings/
+Disallow: /account/
+
+# Block crawling of API endpoints
+Disallow: /api/
+Disallow: /auth/
+
+# Allow crawling of main features
+Allow: /analysis
+Allow: /archive
+Allow: /news
+Allow: /legal
+Allow: /help
+
+# Sitemap location
+Sitemap: https://syntaxengineer.com/sitemap.xml
+
+# Crawl delay for polite crawling
+Crawl-delay: 1
