@@ -55,9 +55,9 @@ export function enhancedAppRouter(
         };
 
         // Set proper headers for SEO
-        res.setHeader("Content-Type", "text/html; charset=utf-8");
-        res.setHeader("Cache-Control", "public, max-age=3600"); // Cache for 1 hour
-        
+        res.header("Content-Type", "text/html; charset=utf-8");
+        res.header("Cache-Control", "public, max-age=3600"); // Cache for 1 hour
+
         // Send the pre-rendered HTML
         res.send(renderPage(defaultConfig));
     };

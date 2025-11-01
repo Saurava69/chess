@@ -9,6 +9,7 @@ const whitelistedHostnames = [
     // Cloud deployment platforms
     /.*\.railway\.app$/,
     /.*\.render\.com$/,
+    /.*\.onrender\.com$/,  
     /.*\.vercel\.app$/,
     /.*\.herokuapp\.com$/,
     // Custom domains (add your own here)
@@ -23,8 +24,17 @@ const hostnameWhitelist: RequestHandler = (req, res, next) => {
         hostnameRegex => hostnameRegex.test(req.hostname)
     );
 
+    // Debug logging for production issues
     if (!hostWhitelisted) {
-        return res.sendStatus(StatusCodes.UNAUTHORIZED);
+        console.log("🚨 HOSTNAME REJECTED:", req.hostname);
+        console.log("📋 Request host header:", req.get("host"));
+        console.log("🌍 NODE_ENV:", process.env.NODE_ENV);
+        return res.status(StatusCodes.UNAUTHORIZED).json({
+            error: "Unauthorized hostname",
+            hostname: req.hostname,
+            host: req.get("host"),
+            env: process.env.NODE_ENV
+        });
     }
 
     next();

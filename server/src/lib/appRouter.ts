@@ -63,7 +63,7 @@ ${breadcrumbData}
             }
         }
 
-        res.setHeader("Content-Type", "text/html");
+        res.header("Content-Type", "text/html");
         res.send(htmlContent);
     };
 }

@@ -1,10 +1,7 @@
-name: SyntaxEngineer
-
+version: "3"
 services:
   app:
-    build: .
+    image: rishabh1771/chess1:latest
     ports:
-      - "${PORT:-8080}:8080"
-    env_file:
-      - .env
-    
+      - "8080:8080"
+    env_file: .env
