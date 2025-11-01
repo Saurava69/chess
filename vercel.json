@@ -1,0 +1,67 @@
+{
+  "version": 2,
+  "buildCommand": "npm run vercel-build",
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.ts"
+    },
+    {
+      "src": "/auth/(.*)",
+      "dest": "/api/index.ts"
+    },
+    {
+      "src": "/internal/(.*)",
+      "dest": "/api/index.ts"
+    },
+    {
+      "src": "/seo/(.*)",
+      "dest": "/api/index.ts"
+    },
+    {
+      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|webp|mp3|wasm))",
+      "dest": "/client/public/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/client/public/apps/homepage.html"
+    },
+    {
+      "src": "/analysis",
+      "dest": "/client/public/apps/features/analysis.html"
+    },
+    {
+      "src": "/archive",
+      "dest": "/client/public/apps/features/archive.html"
+    },
+    {
+      "src": "/news",
+      "dest": "/client/public/apps/features/news.html"
+    },
+    {
+      "src": "/tutorials",
+      "dest": "/client/public/apps/tutorials.html"
+    },
+    {
+      "src": "/openings",
+      "dest": "/client/public/apps/openings.html"
+    },
+    {
+      "src": "/signin",
+      "dest": "/client/public/apps/account/signin.html"
+    },
+    {
+      "src": "/settings",
+      "dest": "/client/public/apps/settings.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/client/public/apps/unfound.html"
+    }
+  ],
+  "functions": {
+    "api/index.ts": {
+      "maxDuration": 30
+    }
+  }
+}
