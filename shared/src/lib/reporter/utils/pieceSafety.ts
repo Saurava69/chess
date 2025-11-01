@@ -31,7 +31,7 @@ export function isPieceSafe(
     ) return true;
 
     // A piece with a direct attacker of lower value than itself isn't safe
-    const hasLowerValueAttacker = directAttackers.some(attacker => (
+    const hasLowerValueAttacker = directAttackers.some((attacker: BoardPiece) => (
         pieceValues[attacker.type] < pieceValues[piece.type]
     ));
 
@@ -45,20 +45,20 @@ export function isPieceSafe(
     // A piece lower in value than any direct attacker, and with any
     // defender lower in value than all direct attackers, must be safe
     const lowestValueAttacker = minBy(directAttackers,
-        attacker => pieceValues[attacker.type]
+        (attacker: BoardPiece) => pieceValues[attacker.type]
     );
 
     if (!lowestValueAttacker) return true;
 
     if (
         pieceValues[piece.type] < pieceValues[lowestValueAttacker.type]
-        && defenders.some(defender => (
+        && defenders.some((defender: BoardPiece) => (
             pieceValues[defender.type] < pieceValues[lowestValueAttacker.type]
         ))
     ) return true;
 
     // A piece defended by any pawn, at this point, must be safe
-    if (defenders.some(defender => defender.type == PAWN)) {
+    if (defenders.some((defender: BoardPiece) => defender.type == PAWN)) {
         return true;
     }
 

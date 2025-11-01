@@ -19,8 +19,8 @@ export function getGameAccuracy(rootNode: StateTreeNode) {
     );
 
     return {
-        white: meanBy(whiteNodes, node => node.state.accuracy!),
-        black: meanBy(blackNodes, node => node.state.accuracy!)
+        white: meanBy(whiteNodes, (node: StateTreeNode) => node.state.accuracy!),
+        black: meanBy(blackNodes, (node: StateTreeNode) => node.state.accuracy!)
     };
 }
 

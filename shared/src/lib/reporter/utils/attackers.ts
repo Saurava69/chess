@@ -100,7 +100,7 @@ export function getAttackingMoves(
 
         // Queue revealed attackers for further recursion
         frontier.push(
-            ...revealedAttackingMoves.map(attackingMove => ({
+            ...revealedAttackingMoves.map((attackingMove: RawMove) => ({
                 directFen: transitiveBoard.fen(),
                 square: attackingMove.from,
                 type: attackingMove.piece
