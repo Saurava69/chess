@@ -1,7 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "npm install && npm run vercel-build",
-  "installCommand": "npm install && npm install --workspaces",
+  "buildCommand": "npm run vercel-build",
   "routes": [
     {
       "src": "/api/(.*)",
