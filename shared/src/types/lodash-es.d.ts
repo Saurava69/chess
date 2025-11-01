@@ -15,4 +15,5 @@ declare module "lodash-es" {
     export function round(number: number, precision?: number): number;
     export function clone<T>(value: T): T;
     export function cloneDeep<T>(value: T): T;
+    export function omit<T>(object: T, ...paths: string[]): Partial<T>;
 }
