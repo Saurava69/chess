@@ -1,0 +1,10 @@
+name: SyntaxEngineer
+
+services:
+  app:
+    build: .
+    ports:
+      - "${PORT:-8080}:8080"
+    env_file:
+      - .env
+    

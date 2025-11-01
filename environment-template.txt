@@ -1,0 +1,94 @@
+# Environment Configuration Template
+# Copy this file and rename it to .env for local development
+# For cloud deployment, set these as environment variables in your platform
+
+# =============================================================================
+# REQUIRED ENVIRONMENT VARIABLES
+# =============================================================================
+
+# Production environment
+NODE_ENV=production
+
+# Your app's public URL (VERY IMPORTANT - UPDATE THIS!)
+# Examples:
+# ORIGIN=https://your-app-name.railway.app
+# ORIGIN=https://your-app-name.render.com
+# ORIGIN=https://your-domain.com
+ORIGIN=https://your-app-name.railway.app
+
+# Random secret for authentication (GENERATE A NEW ONE!)
+# Use: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+AUTH_SECRET=your-super-secure-random-string-here-32-chars-minimum
+
+# MongoDB connection string
+# Get from MongoDB Atlas or your cloud provider
+DATABASE_URI=mongodb+srv://username:password@cluster.mongodb.net/chess-app?retryWrites=true&w=majority
+
+# =============================================================================
+# OPTIONAL BUT RECOMMENDED
+# =============================================================================
+
+# Server port (usually auto-detected by cloud platforms)
+PORT=8080
+
+# Chess game analysis limits
+ANALYSIS_SESSION_ACTIONS=80
+MAXIMUM_ARCHIVE_SIZE=50
+
+# Admin panel password
+INTERNAL_PASSWORD=your-admin-password-here
+
+# =============================================================================
+# EMAIL CONFIGURATION (Optional)
+# =============================================================================
+
+# Contact email displayed on the website
+EMAIL_ACCOUNT=contact@yourdomain.com
+
+# Email for automated messages (verification, password reset)
+AUTOMATED_EMAIL_ADDRESS=no-reply@yourdomain.com
+
+# App password for automated email account
+AUTOMATED_EMAIL_KEY=your-email-app-password
+
+# =============================================================================
+# GOOGLE OAUTH (Optional - for Google Sign-in)
+# =============================================================================
+
+# Get these from Google Cloud Console
+GOOGLE_OAUTH_CLIENT_ID=your-google-oauth-client-id
+GOOGLE_OAUTH_CLIENT_SECRET=your-google-oauth-client-secret
+
+# =============================================================================
+# GOOGLE ADSENSE (Optional - for monetization)
+# =============================================================================
+
+# Your AdSense publisher ID
+ADS_PUBLISHER_ID=ca-pub-your-adsense-publisher-id
+
+# =============================================================================
+# DEPLOYMENT NOTES
+# =============================================================================
+
+# 1. NEVER commit this file with real values to git!
+# 2. Generate a new AUTH_SECRET for each environment
+# 3. Update ORIGIN to match your deployed URL exactly
+# 4. Test locally before deploying to cloud
+# 5. Monitor your database usage on free tiers
+
+# =============================================================================
+# QUICK DEPLOYMENT CHECKLIST
+# =============================================================================
+
+# Railway:
+# 1. Connect GitHub repo
+# 2. Add MongoDB database service  
+# 3. Set environment variables above
+# 4. Deploy automatically
+
+# Render:
+# 1. Connect GitHub repo
+# 2. Set build command: npm install && npm run bbuild
+# 3. Set start command: npm start
+# 4. Add MongoDB Atlas connection
+# 5. Set environment variables above
