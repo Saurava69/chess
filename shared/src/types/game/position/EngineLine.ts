@@ -44,7 +44,7 @@ export function getLineGroupSibling(
  * @description Returns the line with the highest depth and lowest index.
  */
 export function getTopEngineLine(lines: EngineLine[]) {
-    return maxBy(lines, line => line.depth - line.index);
+    return maxBy(lines, (line: EngineLine) => line.depth - line.index);
 }
 
 /**
@@ -107,13 +107,13 @@ export function pickEngineLines(
             .map(source => findLineSet(depth, source));
 
         const qualifyingLineSet = maxBy(
-            lineSets, lineSet => lineSet.length
+            lineSets, (lineSet: EngineLine[]) => lineSet.length
         );
 
         if (
             qualifyingLineSet
             && (!targetCount || qualifyingLineSet.length >= targetCount)
-        ) return qualifyingLineSet.sort((a, b) => a.index - b.index);
+        ) return qualifyingLineSet.sort((a: EngineLine, b: EngineLine) => a.index - b.index);
     }
 
     return null;
