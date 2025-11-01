@@ -2,7 +2,6 @@ import { Chess } from "chess.js";
 import { minBy } from "lodash-es";
 
 import { BoardPiece } from "../types/BoardPiece";
-import { RawMove } from "../types/RawMove";
 import { adaptPieceColour, flipPieceColour } from "@/constants/PieceColour";
 import { setFenTurn } from "@/lib/utils/chess";
 import { getAttackingMoves } from "./attackers";
@@ -42,8 +41,8 @@ export function getDefendingMoves(
                 },
                 transitive
             );
-        }).filter((recapturers: RawMove[] | undefined): recapturers is RawMove[] => !!recapturers),
-        (recapturers: RawMove[]) => recapturers.length
+        }).filter(recapturers => !!recapturers),
+        recapturers => recapturers.length
     );
 
     // Where there are no attackers, flip the colour of the piece and count
