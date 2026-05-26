@@ -61,7 +61,8 @@ function generateTreeView(rootNode: StateTreeNode) {
     renderChildrenOf(rootNode, 0);
 
     return nodeGroups.map(
-        group => <LineGroup
+        (group, i) => <LineGroup
+            key={`${group.indentCount}-${group.nodes.at(0)?.id ?? i}`}
             {...group}
             initialPosition={rootNode.state.fen}
         />

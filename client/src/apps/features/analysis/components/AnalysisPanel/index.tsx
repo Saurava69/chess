@@ -40,10 +40,20 @@ function AnalysisPanel({
 
     const { activeTab } = useAnalysisTabStore();
 
-    // Generates AI coaching commentary for all mainline moves after analysis completes
     useBatchCommentaryGeneration();
-    // Auto-saves the game after Stockfish analysis (non-AI mode)
     useAutoSave();
+
+    const isAIChatTab = gameAnalysisOpen && activeTab === AnalysisTab.AI_CHAT;
+
+    // Engine + classified card — shared between both layouts
+    const engineSection = gameAnalysisOpen && settings.engine.enabled
+        && <RealtimeEngineArea/>;
+
+    const classifiedSection = gameAnalysisOpen
+        && currentNode.state.move
+        && !settings.classifications.hide
+        && (settings.engine.enabled || currentNode.state.classification)
+        && <ClassifiedMoveCard/>;
 
     return <div
         className={`${styles.wrapper} ${className}`}
@@ -57,35 +67,32 @@ function AnalysisPanel({
             {gameAnalysisOpen && <TabBar/>}
         </div>
 
-        {/* ── Scrollable content ────────────────────────────── */}
-        <div className={styles.components}>
-
-            <AnalysisProgress/>
-
-            {(gameAnalysisOpen && settings.engine.enabled)
-                && <RealtimeEngineArea/>
-            }
-
-            {gameAnalysisOpen
-                && currentNode.state.move
-                && !settings.classifications.hide
-                && (
-                    settings.engine.enabled
-                    || currentNode.state.classification
-                )
-                && <ClassifiedMoveCard/>
-            }
-
-            {gameAnalysisOpen
-                ? (activeTab == AnalysisTab.AI_CHAT
-                    ? <AIChat/>
-                    : activeTab == AnalysisTab.REPORT
-                        ? <GameReport/>
-                        : <GameAnalysis/>
-                )
-                : <GameSelection/>
-            }
-        </div>
+        {isAIChatTab ? (
+            /* ── AI Chat layout: compact context above + full chat below ── */
+            <>
+                {(engineSection || classifiedSection) && (
+                    <div className={styles.chatContext}>
+                        <AnalysisProgress/>
+                        {engineSection}
+                        {classifiedSection}
+                    </div>
+                )}
+                <div className={styles.chatArea}>
+                    <AIChat/>
+                </div>
+            </>
+        ) : (
+            /* ── Normal scrollable layout ─────────────────────────────── */
+            <div className={styles.components}>
+                <AnalysisProgress/>
+                {engineSection}
+                {classifiedSection}
+                {gameAnalysisOpen
+                    ? (activeTab === AnalysisTab.REPORT ? <GameReport/> : <GameAnalysis/>)
+                    : <GameSelection/>
+                }
+            </div>
+        )}
 
         {/* ── Fixed footer: move traverser ──────────────────── */}
         <div className={styles.traverserContainer}>

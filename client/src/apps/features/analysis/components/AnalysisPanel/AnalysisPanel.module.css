@@ -8,6 +8,15 @@
     overflow: hidden;
 }
 
+/* On mobile the panel is height:auto and the PAGE scrolls — */
+/* remove clipping and internal scroll containers */
+@media (max-width: 900px) {
+    .wrapper {
+        height: auto;
+        overflow: visible;
+    }
+}
+
 /* ─── Fixed header: toolbar + tabs ───────────────────────────── */
 .header {
     display: flex;
@@ -16,7 +25,7 @@
     border-bottom: 1px solid var(--ui-shade-4);
 }
 
-/* ─── Scrollable content ──────────────────────────────────────── */
+/* ─── Scrollable content (Analysis / Report tabs) ────────────── */
 .components {
     display: flex;
     flex-grow: 1;
@@ -28,6 +37,54 @@
     scrollbar-width: thin;
     scrollbar-color: var(--ui-shade-5) transparent;
     min-height: 0;
+}
+
+/* On mobile: let page scroll handle it — release the scroll trap */
+@media (max-width: 900px) {
+    .components {
+        overflow-y: visible;
+        overscroll-behavior: auto;
+        min-height: unset;
+    }
+}
+
+/* ─── AI Chat layout ──────────────────────────────────────────── */
+.chatContext {
+    flex-shrink: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ui-shade-5) transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 12px 8px;
+    border-bottom: 1px solid var(--ui-shade-4);
+}
+
+@media (max-width: 900px) {
+    .chatContext {
+        max-height: unset;
+        overflow-y: visible;
+        overscroll-behavior: auto;
+    }
+}
+
+.chatArea {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* On mobile the chat area can't be fixed-height — let it grow */
+@media (max-width: 900px) {
+    .chatArea {
+        min-height: 60vh;
+        overflow: visible;
+    }
 }
 
 /* ─── Move traverser ──────────────────────────────────────────── */
@@ -65,6 +122,5 @@
     }
 }
 
-/* ─── title class kept to avoid TS warnings if still referenced ─ */
 .title { display: none; }
 

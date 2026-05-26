@@ -11,11 +11,16 @@ function Advertisement({
 }: AdvertisementProps) {
     useEffect(() => {
         try {
-            window.adsbygoogle ??= [];
-            window.adsbygoogle.push({});
-        } catch {
-            console.warn("advertisement duplicate load cancelled.");
-        }
+            // Only push if this ins element hasn't been initialised yet
+            const els = document.querySelectorAll<HTMLElement>("ins.adsbygoogle");
+            const uninitialised = Array.from(els).filter(
+                el => !el.getAttribute("data-adsbygoogle-status")
+            );
+            if (uninitialised.length > 0) {
+                window.adsbygoogle ??= [];
+                window.adsbygoogle.push({});
+            }
+        } catch { /* duplicate load — safe to ignore */ }
     }, []);
 
     const pubId = publisherId || process.env.ADS_PUBLISHER_ID;

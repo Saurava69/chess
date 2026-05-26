@@ -22,6 +22,7 @@ function LineGroup({
 
     return <div className={styles.wrapper}>
         {range(indentCount).map(index => <Indent
+            key={index}
             style={{
                 position: "absolute",
                 top: "-3px",
@@ -36,16 +37,16 @@ function LineGroup({
                 )
                 : 0
             }
-            
+
             {(
                 forceWhiteMoveNumber
                 || firstNode?.state.moveColour == PieceColour.WHITE
             ) ? "." : "..."}
         </Text>
 
-        {nodes.map(node => node
-            ? <Move node={node} />
-            : <Text>...</Text>
+        {nodes.map((node, i) => node
+            ? <Move key={node.id} node={node} />
+            : <Text key={i}>...</Text>
         )}
     </div>;
 }
