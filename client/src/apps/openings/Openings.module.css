@@ -1,0 +1,493 @@
+/* ─── Hero ────────────────────────────────────────────────────── */
+.hero {
+    width: 100%;
+    background: var(--ui-shade-2);
+    border-bottom: 1px solid var(--ui-shade-4);
+}
+
+.heroInner {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 52px 32px 40px;
+}
+
+@media (max-width: 600px) {
+    .heroInner { padding: 36px 16px 28px; }
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 12px;
+    margin-bottom: 14px;
+    border-radius: 999px;
+    background: rgba(129, 182, 76, 0.12);
+    color: var(--ui-green-hover);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid rgba(129, 182, 76, 0.22);
+}
+
+.heroTitle {
+    font-family: "Nunito";
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 900;
+    color: #fff;
+    margin: 0 0 12px;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+}
+
+.heroSubtitle {
+    font-size: 1rem;
+    color: var(--ui-text-dim);
+    max-width: 560px;
+    line-height: 1.65;
+    margin: 0 0 28px;
+}
+
+/* ─── Filter tabs ─────────────────────────────────────────────── */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filterBtn {
+    padding: 7px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--ui-shade-5);
+    background: transparent;
+    color: var(--ui-text-dim);
+    font-family: "Nunito";
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.filterBtn:hover {
+    background: var(--ui-shade-4);
+    color: var(--ui-text);
+    border-color: var(--ui-shade-6);
+}
+
+.filterActive {
+    background: rgba(129, 182, 76, 0.15) !important;
+    border-color: rgba(129, 182, 76, 0.45) !important;
+    color: var(--ui-green-hover) !important;
+}
+
+/* ─── Page shell ──────────────────────────────────────────────── */
+.shell {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+}
+
+@media (max-width: 600px) {
+    .shell { padding: 28px 16px 60px; }
+}
+
+/* ─── Openings grid ───────────────────────────────────────────── */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 56px;
+}
+
+@media (max-width: 1000px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; }
+}
+
+/* ─── Opening card ────────────────────────────────────────────── */
+.card {
+    display: flex;
+    flex-direction: column;
+    background: var(--ui-shade-3);
+    border: 1px solid var(--ui-shade-4);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(129, 182, 76, 0.35);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+}
+
+/* ─── Board area ──────────────────────────────────────────────── */
+.cardBoard {
+    position: relative;
+    padding: 14px 14px 0;
+    background: var(--ui-shade-2);
+    border-bottom: 1px solid var(--ui-shade-4);
+}
+
+/* ─── Mini board ──────────────────────────────────────────────── */
+.miniBoard {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.miniSq {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.miniSqLight { background: var(--ui-cream); }
+.miniSqDark  { background: var(--ui-green-deep); }
+
+.miniPieceW,
+.miniPieceB {
+    font-size: clamp(0.65rem, 1.6vw, 1.05rem);
+    line-height: 1;
+    user-select: none;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.miniPieceW {
+    color: #fafaf2;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.55));
+}
+
+.miniPieceB {
+    color: #1e1a14;
+    filter: drop-shadow(0 1px 0 rgba(255,255,255,0.12));
+}
+
+/* ─── Side badge ──────────────────────────────────────────────── */
+.sideBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 4px 4px 0 0;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.badgeWhite {
+    background: rgba(238, 238, 210, 0.12);
+    color: var(--ui-cream);
+    border: 1px solid rgba(238, 238, 210, 0.2);
+    border-bottom: none;
+}
+
+.badgeBlack {
+    background: rgba(129, 182, 76, 0.12);
+    color: var(--ui-green-hover);
+    border: 1px solid rgba(129, 182, 76, 0.25);
+    border-bottom: none;
+}
+
+.badgeFlexible {
+    background: rgba(233, 177, 90, 0.12);
+    color: var(--ui-amber);
+    border: 1px solid rgba(233, 177, 90, 0.25);
+    border-bottom: none;
+}
+
+/* ─── Card body ───────────────────────────────────────────────── */
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px 18px 16px;
+    flex: 1;
+}
+
+.cardName {
+    font-family: "Nunito";
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+/* ─── Move chips ──────────────────────────────────────────────── */
+.moveChips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.moveChip {
+    padding: 3px 8px;
+    background: var(--ui-shade-2);
+    border: 1px solid var(--ui-shade-5);
+    border-radius: 4px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--ui-green-hover);
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
+/* ─── Description ─────────────────────────────────────────────── */
+.cardDesc {
+    font-size: 0.85rem;
+    color: var(--ui-text-dim);
+    line-height: 1.55;
+    margin: 0;
+}
+
+/* ─── Variations ──────────────────────────────────────────────── */
+.variations {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-top: 8px;
+    border-top: 1px solid var(--ui-shade-4);
+}
+
+.variations li {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.8rem;
+    color: var(--ui-text-muted);
+    font-weight: 600;
+}
+
+.variations li::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--ui-green);
+    opacity: 0.55;
+    flex-shrink: 0;
+}
+
+/* ─── Card CTA ────────────────────────────────────────────────── */
+.cardCta {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: auto;
+    padding-top: 10px;
+    color: var(--ui-green);
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.cardCta:hover { color: var(--ui-green-hover); }
+
+.ctaArrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.card:hover .ctaArrow { transform: translateX(4px); }
+
+/* ─── Principles section ──────────────────────────────────────── */
+.principlesSection {
+    margin-bottom: 48px;
+}
+
+.principlesHeader {
+    margin-bottom: 28px;
+}
+
+.principlesTitle {
+    font-family: "Nunito";
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #fff;
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+}
+
+.principlesSubtitle {
+    font-size: 0.9rem;
+    color: var(--ui-text-dim);
+    max-width: 560px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.principlesGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+@media (max-width: 600px) {
+    .principlesGrid { grid-template-columns: 1fr; }
+}
+
+.principleCard {
+    display: flex;
+    gap: 18px;
+    padding: 22px 24px;
+    background: var(--ui-shade-2);
+    border: 1px solid var(--ui-shade-4);
+    border-left: 3px solid var(--ui-green);
+    border-radius: 8px;
+    align-items: flex-start;
+}
+
+.principleLeft {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(129, 182, 76, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(129, 182, 76, 0.2);
+}
+
+.principleIcon {
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--ui-green);
+    filter: drop-shadow(0 0 6px rgba(129, 182, 76, 0.3));
+}
+
+.principleRight {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.principleNum {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--ui-text-muted);
+    letter-spacing: 0.12em;
+}
+
+.principleTitle {
+    font-family: "Nunito";
+    font-size: 1rem;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.principleDesc {
+    font-size: 0.85rem;
+    color: var(--ui-text-dim);
+    margin: 4px 0 0;
+    line-height: 1.55;
+}
+
+/* ─── CTA strip ───────────────────────────────────────────────── */
+.ctaStrip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 40px;
+    background: linear-gradient(135deg, rgba(129,182,76,0.08) 0%, transparent 60%), var(--ui-shade-2);
+    border: 1px solid rgba(129, 182, 76, 0.2);
+    border-radius: 10px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+    .ctaStrip { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
+}
+
+.ctaStripLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ctaStripKicker {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ui-green);
+}
+
+.ctaStripTitle {
+    font-family: "Nunito";
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.ctaStripDesc {
+    font-size: 0.88rem;
+    color: var(--ui-text-dim);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.ctaStripBtn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: var(--ui-green);
+    color: #14210a;
+    border-radius: 6px;
+    font-family: "Nunito";
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.3);
+    transition: background 0.15s ease, transform 0.15s ease;
+    white-space: nowrap;
+}
+
+.ctaStripBtn:hover {
+    background: var(--ui-green-hover);
+    transform: translateY(-2px);
+    color: #14210a;
+}
+
+/* ─── Entrance animation ──────────────────────────────────────── */
+.fadeIn {
+    animation: fadeUp 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+}

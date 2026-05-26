@@ -1,44 +1,75 @@
+/* ─── Footer wrapper ──────────────────────────────────────────── */
 .wrapper {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 10px 60px;
-    padding: 15px;
+    gap: 12px 40px;
+    padding: 20px 32px;
     box-sizing: border-box;
     width: 100%;
 
-    background-color: var(--ui-shade-2);
-    color: white;
+    background: var(--ui-shade-2);
+    color: var(--ui-text-muted);
+    border-top: 1px solid var(--ui-shade-4);
+    font-size: 0.82rem;
 }
 
+/* ─── Sections ────────────────────────────────────────────────── */
 .section {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }
 
 .section a {
-    color: white;
+    color: var(--ui-text-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: color 0.15s ease;
 }
 
+.section a:hover {
+    color: var(--ui-text-dim);
+}
+
+/* ─── Links row ───────────────────────────────────────────────── */
 .links {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px 60px;
+    gap: 12px 40px;
 }
 
+/* ─── Copyright ───────────────────────────────────────────────── */
+.copyrightNotice {
+    font-size: 0.78rem;
+    color: var(--ui-text-muted);
+    letter-spacing: 0.01em;
+    line-height: 1.6;
+}
+
+/* ─── Inline link (e.g. Language picker) ─────────────────────── */
+.link {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ui-text-muted);
+    transition: color 0.15s ease;
+}
+
+.link:hover {
+    color: var(--ui-text-dim);
+}
+
+/* ─── Logo inside footer (if used) ───────────────────────────── */
 .typographyIcon {
-    width: 30px;
-    height: 30px !important;
+    width: 24px;
+    height: 24px !important;
+    opacity: 0.6;
 }
 
 .typographyText {
-    font-size: 1.5rem;
-}
-
-.copyrightNotice {
-    font-size: 0.85rem;
-}
-
-.link {
-    text-decoration: underline;
-    cursor: pointer;
+    font-size: 1.1rem;
+    opacity: 0.6;
 }

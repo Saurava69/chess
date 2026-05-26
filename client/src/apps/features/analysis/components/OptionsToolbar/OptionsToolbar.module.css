@@ -1,28 +1,44 @@
+/* ─── Toolbar strip ───────────────────────────────────────────── */
 .wrapper {
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 4px;
     position: relative;
-
-    border-radius: 10px;
-    background-color: var(--ui-shade-4);
+    padding: 6px 8px;
+    background: var(--ui-shade-3);
+    border-bottom: 1px solid var(--ui-shade-4);
+    flex-shrink: 0;
 }
 
+/* ─── Back button (left-anchored) ─────────────────────────────── */
 .backButton {
-    padding: 3px;
-    box-sizing: border-box;
-    width: 52px;
-    height: 52px;
     position: absolute;
-    left: 0;
-
-    background-color: var(--ui-shade-5);
+    left: 8px;
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+    border-radius: 7px;
+    background: var(--ui-shade-4);
+    transition: background 0.15s ease;
 }
 
-.optionButton {
-    padding: 6px;
-    width: 52px;
-    height: 52px;
+.backButton:hover {
+    background: var(--ui-shade-5) !important;
+    filter: none !important;
+}
 
-    background-color: var(--ui-shade-4);
+/* ─── Icon buttons ────────────────────────────────────────────── */
+.optionButton {
+    width: 36px;
+    height: 36px;
+    padding: 5px;
+    border-radius: 7px;
+    background: transparent;
+    transition: background 0.15s ease;
+}
+
+.optionButton:hover {
+    background: var(--ui-shade-4) !important;
+    filter: none !important;
 }

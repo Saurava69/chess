@@ -21,6 +21,7 @@ import {
 import useSettingsStore from "@/stores/SettingsStore";
 import useAnalysisBoardStore from "@analysis/stores/AnalysisBoardStore";
 import useAnalysisProgressStore from "@analysis/stores/AnalysisProgressStore";
+import useAICommentaryStore from "@analysis/stores/AICommentaryStore";
 import LogMessage from "@/components/common/LogMessage";
 import playBoardSound from "@/lib/boardSounds";
 
@@ -73,6 +74,9 @@ function ClassifiedMoveCard() {
         }))
     );
 
+    const { aiCoachEnabled, commentaries, aiError } = useAICommentaryStore();
+    const commentary = commentaries[node.id];
+
     useEffect(() => setRealtimeClassifyError(), [node]);
 
     const nearestOpeningName = findNodeRecursively(
@@ -107,10 +111,12 @@ function ClassifiedMoveCard() {
         playBoardSound(createdNode);
     }
 
+    const hasOpeningOrCoach = nearestOpeningName || (aiCoachEnabled && !!commentary);
+
     return <div className={styles.wrapper}>
         <div
             className={styles.classificationSection}
-            style={nearestOpeningName
+            style={hasOpeningOrCoach
                 ? { borderRadius: "10px 10px 0 0" }
                 : undefined
             }
@@ -177,6 +183,43 @@ function ClassifiedMoveCard() {
                 {nearestOpeningName}
             </div>
         }
+
+        {/* ── AI Coach commentary ────────────────────────── */}
+        {aiCoachEnabled && (aiError || commentary) && (
+            <div className={`${styles.coachPanel} ${commentary?.status === "loading" ? styles.coachStreaming : ""}`}>
+                <div className={styles.coachHeader}>
+                    <span className={styles.coachSpark}>✦</span>
+                    <span className={styles.coachLabel}>Coach</span>
+                </div>
+                {/* Auth / rate-limit errors */}
+                {aiError === "signin" && (
+                    <p className={`${styles.coachText} ${styles.coachError}`}>
+                        <a href="/signin" style={{ color: "var(--ui-green-hover)", textDecoration: "underline" }}>
+                            Sign in
+                        </a>
+                        {" "}to unlock AI coaching.
+                    </p>
+                )}
+                {aiError === "limit_analysis" && (
+                    <p className={`${styles.coachText} ${styles.coachError}`}>
+                        You've used your 2 AI analyses for today. Resets at midnight UTC.
+                    </p>
+                )}
+                {/* Normal commentary states */}
+                {!aiError && commentary?.status === "loading" && (
+                    <p className={styles.coachText}>
+                        {commentary.text || "Analyzing this position…"}
+                        <span className={styles.coachCursor} />
+                    </p>
+                )}
+                {!aiError && commentary?.status === "done" && (
+                    <p className={styles.coachText}>{commentary.text}</p>
+                )}
+                {!aiError && commentary?.status === "error" && commentary.text && (
+                    <p className={`${styles.coachText} ${styles.coachError}`}>{commentary.text}</p>
+                )}
+            </div>
+        )}
     </div>;
 }
 

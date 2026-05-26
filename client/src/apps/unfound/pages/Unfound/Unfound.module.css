@@ -1,29 +1,74 @@
+/* ─── Full-page centering ─────────────────────────────────────── */
 .wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-
+    gap: 20px;
     box-sizing: border-box;
-    padding: 30px;
+    padding: 64px 24px 80px;
     width: 100%;
-
-    color: white;
+    min-height: calc(100vh - 60px);
+    text-align: center;
 }
 
+/* ─── 404 label ───────────────────────────────────────────────── */
 .errorCode {
+    font-family: "Nunito";
+    font-size: clamp(4rem, 12vw, 7rem);
+    font-weight: 900;
+    color: var(--ui-shade-5);
+    line-height: 1;
     margin: 0;
-
-    font-size: 4rem;
+    letter-spacing: -0.03em;
 }
 
+/* ─── Heading ─────────────────────────────────────────────────── */
+.heading {
+    font-family: "Nunito";
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+/* ─── Subtext ─────────────────────────────────────────────────── */
+.message {
+    font-size: 0.95rem;
+    color: var(--ui-text-dim);
+    max-width: 360px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ─── Illustration ────────────────────────────────────────────── */
 .image {
-    width: min(500px, 100%);
-
-    border-radius: 20px;
+    width: min(340px, 80%);
+    border-radius: var(--ui-radius-xl);
+    opacity: 0.85;
+    margin: 8px 0;
 }
 
+/* ─── Return link ─────────────────────────────────────────────── */
 .returnLink {
-    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: var(--ui-green);
+    color: #14210a;
+    border-radius: 6px;
+    font-family: "Nunito";
+    font-weight: 800;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+    transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.returnLink:hover {
+    background: var(--ui-green-hover);
+    transform: translateY(-2px);
+    color: #14210a;
 }

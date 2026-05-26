@@ -9,7 +9,7 @@ export function generateStructuredData(page: string, url: string): string {
     baseData.description = "Free chess analysis, game archive, and chess learning platform";
     baseData.creator = {
         "@type": "Organization",
-        name: "SyntaxEngineer"
+        name: "chess.sauravx"
     };
     baseData.offers = {
         "@type": "Offer",
@@ -49,7 +49,7 @@ export function generateStructuredData(page: string, url: string): string {
             description: "Comprehensive chess tutorial series covering tactics, strategy, openings, and endgames for all skill levels.",
             provider: {
                 "@type": "Organization",
-                name: "SyntaxEngineer"
+                name: "chess.sauravx"
             },
             courseMode: ["online"],
             educationalLevel: "Beginner to Advanced",
@@ -67,7 +67,7 @@ export function generateStructuredData(page: string, url: string): string {
             description: "Complete guide to chess openings including Queen's Gambit, Sicilian Defense, Italian Game, and opening principles.",
             author: {
                 "@type": "Organization",
-                name: "SyntaxEngineer"
+                name: "chess.sauravx"
             },
             articleSection: "Chess Education",
             keywords: [

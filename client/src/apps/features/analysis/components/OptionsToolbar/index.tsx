@@ -19,6 +19,7 @@ import SettingsDialog from "../SettingsDialog";
 import ShareDialog from "../ShareDialog";
 import displayToast from "@/lib/toast";
 import { archiveGame } from "@/lib/gameArchive";
+import useAICommentaryStore from "@analysis/stores/AICommentaryStore";
 
 import * as styles from "./OptionsToolbar.module.css";
 
@@ -70,6 +71,8 @@ function OptionsToolbar() {
 
     const [ archiveStatus, setArchiveStatus ] = useState<FetchStatus>("idle");
 
+    const { commentaries } = useAICommentaryStore();
+
     function back() {
         setSearchParams(omit(
             Object.fromEntries(searchParams.entries()),
@@ -94,9 +97,16 @@ function OptionsToolbar() {
     async function saveToArchive() {
         setArchiveStatus("fetching");
 
+        // Only save commentaries that are fully generated
+        const doneCommentaries: Record<string, string> = {};
+        for (const [nodeId, entry] of Object.entries(commentaries)) {
+            if (entry.status === "done") doneCommentaries[nodeId] = entry.text;
+        }
+
         const archival = await archiveGame(
             analysisGame,
-            searchParams.get("game") || undefined
+            searchParams.get("game") || undefined,
+            Object.keys(doneCommentaries).length > 0 ? doneCommentaries : undefined
         );
 
         if (archival.status == StatusCodes.INSUFFICIENT_STORAGE)

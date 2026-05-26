@@ -1,36 +1,73 @@
+/* ─── Page wrapper ────────────────────────────────────────────── */
 .wrapper {
     display: flex;
     justify-content: center;
-    padding: 20px 0;
+    padding: 36px 20px 64px;
     width: 100%;
+    box-sizing: border-box;
 }
 
-.wrapper a {
-    color: white;
-}
-
+/* ─── Content card ────────────────────────────────────────────── */
 .content {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    gap: 15px;
-    padding: 20px;
-    width: min(100%, 800px);
-
-    background-color: rgba(0, 0, 0, 0.15);
-    color: white;
+    gap: 16px;
+    padding: 36px 40px;
+    width: min(100%, 820px);
+    background: var(--ui-shade-2);
+    border: 1px solid var(--ui-shade-4);
+    border-radius: 10px;
+    box-sizing: border-box;
 }
 
+@media (max-width: 600px) {
+    .wrapper { padding: 20px 12px 48px; }
+    .content { padding: 24px 20px; }
+}
+
+/* ─── Title ───────────────────────────────────────────────────── */
 .title {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin: 0;
-    width: 100%;
+    gap: 12px;
+    margin: 0 0 8px;
+    font-family: "Nunito";
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.02em;
+    border-bottom: 1px solid var(--ui-shade-4);
+    padding-bottom: 20px;
+    justify-content: flex-start;
 }
 
+/* ─── Body text ───────────────────────────────────────────────── */
+.content p,
+.content li {
+    font-size: 0.92rem;
+    color: var(--ui-text-dim);
+    line-height: 1.75;
+    margin: 0;
+}
+
+.content h2 {
+    font-family: "Nunito";
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 8px 0 0;
+}
+
+.content a,
 .link {
-    text-decoration: underline;
+    color: var(--ui-green);
+    text-decoration: none;
+    font-weight: 600;
     cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+.content a:hover,
+.link:hover {
+    color: var(--ui-green-hover);
 }

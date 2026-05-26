@@ -1,4 +1,4 @@
-const CACHE_NAME = 'syntaxengineer-chess-v1';
+const CACHE_NAME = 'chess.sauravx-chess-v1';
 const STATIC_CACHE_URLS = [
     '/',
     '/analysis',

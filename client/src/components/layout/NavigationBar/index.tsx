@@ -75,7 +75,7 @@ function NavigationBar() {
         </div>
 
         <div className={styles.section}>
-            <a href="https://ko-fi.com/syntaxengineer" target="_blank">
+            <a href="https://razorpay.me/@sauravx" target="_blank">
                 <Button
                     className={styles.support}
                     icon={iconKofi}

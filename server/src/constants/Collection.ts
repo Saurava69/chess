@@ -11,6 +11,9 @@ enum Collection {
     // Users
     ARCHIVED_GAMES = "archivedGames",
 
+    // AI usage tracking
+    DAILY_AI_USAGE = "dailyAiUsage",
+
     // Global
     NEWS_ARTICLES = "news",
     ANNOUNCEMENT = "announcement"

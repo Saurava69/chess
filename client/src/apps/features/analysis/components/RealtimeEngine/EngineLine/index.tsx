@@ -50,9 +50,12 @@ function EngineLine({ line }: EngineLineProps) {
             className={styles.evaluation}
             style={{
                 backgroundColor: line.evaluation.value >= 0
-                    ? "#fff" : "#0c0c0c",
+                    ? "rgba(129,182,76,0.18)"
+                    : "rgba(201,50,48,0.18)",
                 color: line.evaluation.value >= 0
-                    ? "#0c0c0c" : "#fff"
+                    ? "var(--ui-green-hover)"
+                    : "#e05555",
+                border: `1px solid ${line.evaluation.value >= 0 ? "rgba(129,182,76,0.3)" : "rgba(201,50,48,0.3)"}`
             }}
         >
             {

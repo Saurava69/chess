@@ -1,67 +1,76 @@
+/* ─── Page wrapper ────────────────────────────────────────────── */
 .wrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 30px 0;
+    gap: 0;
+    padding: 16px 0 0;
     width: 100%;
+    box-sizing: border-box;
 }
 
+/* ─── Ad banner slot ──────────────────────────────────────────── */
 .advertisement {
-    padding: 0 30px;
+    padding: 0 24px;
+    margin-bottom: 8px;
 }
 
 @media (max-width: 500px) {
-    .wrapper {
-        gap: 0;
-        padding: 0;
-    }
-
-    .advertisement {
-        padding: 0;
-    }
+    .wrapper { padding: 0; }
+    .advertisement { padding: 0; }
 }
 
+/* ─── Board + panel layout ────────────────────────────────────── */
 .analysisSection {
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 30px;
-    padding: 0 30px;
+    justify-content: center;
+    align-items: stretch;
+    gap: 12px;
+    padding: 0 24px;
     box-sizing: border-box;
     width: 100%;
-    height: calc(100vh - 125px);
+    height: calc(100vh - 108px);
+    min-height: 540px;
+}
+
+@media (max-width: 1100px) {
+    .panel { width: 360px; }
 }
 
 @media (max-width: 900px) {
     .analysisSection {
         flex-direction: column;
-        justify-content: start;
+        align-items: center;
         height: auto;
-    }
-}
-
-@media (max-width: 500px) {
-    .analysisSection {
         gap: 0;
         padding: 0;
     }
 }
 
+/* ─── Right analysis panel ────────────────────────────────────── */
 .panel {
-    width: 385px;
+    width: 420px;
+    flex-shrink: 0;
     height: 100%;
+    background: var(--ui-shade-2);
+    border: 1px solid var(--ui-shade-4);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 @media (max-width: 900px) {
     .panel {
         width: 100%;
+        height: auto;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid var(--ui-shade-4);
+        border-bottom: none;
     }
 }
 
 @media (max-width: 500px) {
-    .panel {
-        padding-top: 0;
-        
-        border-radius: 0;
-    }
+    .panel { border-top: none; }
 }

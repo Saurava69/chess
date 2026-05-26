@@ -1,88 +1,116 @@
+/* ─── Page wrapper ────────────────────────────────────────────── */
 .wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    text-align: center;
+    gap: 0;
     box-sizing: border-box;
     width: 100%;
-    padding: 20px 50px;
-
-    color: white;
+    padding: 0 0 64px;
 }
 
-@media (max-width: 600px) {
-    .wrapper {
-        padding: 20px;
-    }
-}
-
+/* ─── Hero header ─────────────────────────────────────────────── */
 .titleSection {
     display: flex;
     flex-direction: column;
-    width: min(100%, 420px);
-
-    border: 1px solid var(--ui-shade-4);
-    border-radius: 10px;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    background: var(--ui-shade-2);
+    border-bottom: 1px solid var(--ui-shade-4);
+    padding: 40px 32px 32px;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .title {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    position: relative;
-    padding: 10px;
-    box-sizing: border-box;
+    gap: 14px;
     width: 100%;
+    margin-bottom: 8px;
+}
 
-    border-radius: 10px 10px 0 0;
-    background-color: var(--ui-shade-2);
+.title img {
+    width: 40px;
+    height: 40px;
+    opacity: 0.9;
+}
 
-    overflow: hidden;
+.titleText {
+    font-family: "Nunito";
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.02em;
 }
 
 .titleDescription {
-    padding: 5px;
-    box-sizing: border-box;
-    width: 100%;
-
-    border-top: 1px solid var(--ui-shade-4);
-    border-radius: 0 0 10px 10px;
-    background-color: var(--ui-shade-3);
+    font-size: 0.95rem;
+    color: var(--ui-text-dim);
+    max-width: 480px;
+    line-height: 1.6;
+    padding: 10px 0 20px;
 }
 
+/* ─── Socials ─────────────────────────────────────────────────── */
 .socialsSection {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    padding-top: 4px;
 }
 
 .socialsContainer {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
 }
 
+/* ─── Divider ─────────────────────────────────────────────────── */
 .separator {
     width: 100%;
-
     border: none;
-    border-bottom: 1px solid #2f2f2f;
+    border-bottom: 1px solid var(--ui-shade-4);
+    margin: 0;
 }
 
+/* ─── Articles grid ───────────────────────────────────────────── */
 .articles {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    justify-items: stretch;
+    width: 100%;
+    max-width: 1160px;
+    padding: 36px 32px 0;
+    box-sizing: border-box;
 }
 
+@media (max-width: 600px) {
+    .articles { padding: 24px 16px 0; }
+    .titleSection { padding: 28px 16px 24px; }
+}
+
+/* ─── Pagination ──────────────────────────────────────────────── */
 .pageButtons {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ui-shade-4);
+    width: 100%;
+    max-width: 1160px;
+    padding-left: 32px;
+    padding-right: 32px;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .pageButtons { padding-left: 16px; padding-right: 16px; }
 }

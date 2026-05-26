@@ -43,7 +43,7 @@ function AnalysisProgress() {
         }
 
         function focusListener() {
-            document.title = "SyntaxEngineer";
+            document.title = "chess.sauravx";
             removeEventListener("focus", focusListener);
         }
 

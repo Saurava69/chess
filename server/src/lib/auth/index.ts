@@ -49,7 +49,7 @@ function createAuth(database: mongo.Db) {
             sendVerificationEmail: async ({ user, url }) => sendAccountEmail({
                 recipient: user.email,
                 subject: "Verify your chess.sauravx.com account",
-                message: "Thank you for creating an account on SyntaxEngineer! "
+                message: "Thank you for creating an account on chess.sauravx! "
                     + "Please verify your account by clicking the button below:",
                 buttonLabel: "Verify Account",
                 buttonUrl: url,
@@ -90,7 +90,7 @@ function createAuth(database: mongo.Db) {
             }
         },
         logger: { disabled: cluster.worker?.id != 1 },
-        advanced: { cookiePrefix: "SyntaxEngineer" }
+        advanced: { cookiePrefix: "chess.sauravx" }
     });
 }
 

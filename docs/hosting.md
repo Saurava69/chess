@@ -13,15 +13,15 @@
 ### Clone the repository
 
 ```sh
-git clone https://github.com/wintrcat/SyntaxEngineer.git
+git clone https://github.com/wintrcat/chess.sauravx.git
 
 # Go to the directory
-cd SyntaxEngineer
+cd chess.sauravx
 ```
 
 ### Set environment variables
 
-These are the environment variables that you can set when hosting SyntaxEngineer:
+These are the environment variables that you can set when hosting chess.sauravx:
 
 ```toml
 NODE_ENV="production"
@@ -46,7 +46,7 @@ For example, `http://localhost:8080`
 DATABASE_URI="mongodb://" # ...
 ```
 
-A connection string for a MongoDB database. Collections, indexes etc. will be created when the app runs. Defaults to `mongodb://database/SyntaxEngineer`.
+A connection string for a MongoDB database. Collections, indexes etc. will be created when the app runs. Defaults to `mongodb://database/chess.sauravx`.
 
 ```toml
 ANALYSIS_SESSION_ACTIONS=80

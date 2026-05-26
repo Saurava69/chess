@@ -25,7 +25,7 @@ function Typography({
                 className={iconClassName}
                 style={{ height: 40, ...iconStyle }}
                 src={iconLogo}
-                title="SyntaxEngineer"
+                title="chess.sauravx"
                 draggable={false}
             />
         }
@@ -34,10 +34,10 @@ function Typography({
             className={`${styles.title} ${textClassName}`}
             style={textStyle}
         >
-            Syntax
+            Open
 
             <b style={{ letterSpacing: 0 }}>
-                Engineer
+            Chess
             </b>
         </span>
     </div>;

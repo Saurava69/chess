@@ -26,7 +26,7 @@ There were also a bunch of larger systems on the roadmap; hopefully we can all w
 - Explanations on Chess moves, like Chess.com's coach. This may be a monumental challenge! I would love to see something on par with or even better than Chess.com's.
 - Automated classifier testing? A large set of pre-evaluated games to test the brilliant move algorithm on etc.
 
-If you'd like to contribute to SyntaxEngineer, but don't know where to start, this list may give you some inspiration 💙
+If you'd like to contribute to chess.sauravx, but don't know where to start, this list may give you some inspiration 💙
 
 ## 📋 Code Style
 

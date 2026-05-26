@@ -1,6 +1,7 @@
 enum AnalysisTab {
     REPORT,
-    ANALYSIS
+    ANALYSIS,
+    AI_CHAT
 }
 
 export default AnalysisTab;

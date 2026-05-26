@@ -37,19 +37,26 @@ export async function getArchivedGame(
 
 export async function archiveGame(
     game: AnalysedGame,
-    gameId?: string
+    gameId?: string,
+    aiCommentaries?: Record<string, string>
 ): APIResponse<{ id: string }> {
     const url = gameId
         ? `/api/analysis/archive/add?id=${gameId}`
         : "/api/analysis/archive/add";
 
+    const body: Record<string, unknown> = {
+        ...game,
+        stateTree: serializeNode(game.stateTree)
+    };
+
+    if (aiCommentaries && Object.keys(aiCommentaries).length > 0) {
+        body.aiCommentaries = aiCommentaries;
+    }
+
     const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            ...game,
-            stateTree: serializeNode(game.stateTree)
-        })
+        body: JSON.stringify(body)
     });
 
     if (!response.ok) {

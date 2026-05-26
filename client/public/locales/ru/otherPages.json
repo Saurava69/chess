@@ -1,7 +1,7 @@
 {
     "news": {
         "title": "Газета",
-        "titleDescription": "Получайте последние обновления на платформе SyntaxEngineer",
+        "titleDescription": "Получайте последние обновления на платформе chess.sauravx",
         "error": "При загрузке газеты произошла ошибка.",
         "article": {
             "unfound": "Мы не смогли найти эту статью.",

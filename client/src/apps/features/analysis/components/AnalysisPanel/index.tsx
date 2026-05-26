@@ -1,5 +1,4 @@
-import React, { lazy } from "react";
-import { useTranslation } from "react-i18next";
+import React, { lazy, Suspense } from "react";
 
 import AnalysisTab from "@analysis/constants/AnalysisTab";
 import useSettingsStore from "@/stores/SettingsStore";
@@ -8,6 +7,7 @@ import useAnalysisBoardStore from "@analysis/stores/AnalysisBoardStore";
 import useAnalysisTabStore from "@analysis/stores/AnalysisTabStore";
 import ClassifiedMoveCard from "@analysis/components/report/ClassifiedMoveCard";
 import StateTreeTraverser from "@/components/chess/StateTreeTraverser";
+import useBatchCommentaryGeneration from "@analysis/hooks/useBatchCommentaryGeneration";
 
 import TabBar from "./TabBar";
 import AnalysisProgress from "./AnalysisProgress";
@@ -16,6 +16,7 @@ import RealtimeEngineArea from "./RealtimeEngineArea";
 import GameSelection from "./GameSelection";
 import GameReport from "./GameReport";
 import GameAnalysis from "./GameAnalysis";
+import AIChat from "./AIChat";
 
 import AnalysisPanelProps from "./AnalysisPanelProps";
 import * as styles from "./AnalysisPanel.module.css";
@@ -26,8 +27,6 @@ function AnalysisPanel({
     className,
     style
 }: AnalysisPanelProps) {
-    const { t } = useTranslation("analysis");
-
     const settings = useSettingsStore(state => state.settings.analysis);
 
     const gameAnalysisOpen = useAnalysisGameStore(
@@ -39,19 +38,24 @@ function AnalysisPanel({
     );
 
     const { activeTab } = useAnalysisTabStore();
-    
+
+    // Generates AI coaching commentary for all mainline moves after analysis completes
+    useBatchCommentaryGeneration();
+
     return <div
         className={`${styles.wrapper} ${className}`}
         style={style}
     >
-        <div className={styles.components}>
-            <div className={styles.title}>
-                {t("title")}
-            </div>
-
-            <OptionsToolbar/>
-
+        {/* ── Fixed header: toolbar + tabs ─────────────────── */}
+        <div className={styles.header}>
+            <Suspense fallback={<div style={{ height: "48px" }} />}>
+                <OptionsToolbar/>
+            </Suspense>
             {gameAnalysisOpen && <TabBar/>}
+        </div>
+
+        {/* ── Scrollable content ────────────────────────────── */}
+        <div className={styles.components}>
 
             <AnalysisProgress/>
 
@@ -70,14 +74,17 @@ function AnalysisPanel({
             }
 
             {gameAnalysisOpen
-                ? (activeTab == AnalysisTab.REPORT
-                    ? <GameReport/>
-                    : <GameAnalysis/>
+                ? (activeTab == AnalysisTab.AI_CHAT
+                    ? <AIChat/>
+                    : activeTab == AnalysisTab.REPORT
+                        ? <GameReport/>
+                        : <GameAnalysis/>
                 )
                 : <GameSelection/>
             }
         </div>
 
+        {/* ── Fixed footer: move traverser ──────────────────── */}
         <div className={styles.traverserContainer}>
             <StateTreeTraverser className={styles.traverser} />
         </div>

@@ -10,45 +10,122 @@
 
 @font-face {
     font-family: "Nunito";
-    src: url("../public/fonts/nunito.ttf")
+    src: url("../public/fonts/nunito.ttf");
+    font-display: swap;
 }
 
 :root {
-    --ui-blue: #467de8;
-    --ui-lavender: #625eb1;
-    --ui-shade-1: #101216;
-    --ui-shade-2: #17191e;
-    --ui-shade-3: #1f2125;
-    --ui-shade-4: #2c2f35;
-    --ui-shade-5: #3b3e43;
-    --ui-shade-6: #3e4349;
-    --ui-shade-7: #50575f;
+    /* Warm dark surface ramp — chess.com feel */
+    --ui-shade-1: #161512;        /* page bg */
+    --ui-shade-2: #1f1d1a;        /* nav, footer, base surface */
+    --ui-shade-3: #26241f;        /* card surface */
+    --ui-shade-4: #312e28;        /* hover / borders */
+    --ui-shade-5: #3a3631;        /* button base */
+    --ui-shade-6: #4a463f;        /* subtle accents */
+    --ui-shade-7: #6b665d;        /* muted text */
 
-    --rt-color-dark: #111 !important;
+    /* Board green — primary */
+    --ui-green: #81b64c;          /* chess.com signature green */
+    --ui-green-deep: #6a9b3b;     /* pressed / dark square */
+    --ui-green-hover: #95cc59;
+    --ui-green-soft: rgba(129, 182, 76, 0.15);
+
+    /* Board cream + amber accents */
+    --ui-cream: #eeeed2;          /* light square */
+    --ui-cream-deep: #d6d3b6;
+    --ui-amber: #e9b15a;          /* gold / premium */
+    --ui-amber-deep: #c9913f;
+
+    /* Text */
+    --ui-text: #f1ece1;
+    --ui-text-dim: #b8b2a4;
+    --ui-text-muted: #7a7468;
+
+    /* Geometry */
+    --ui-radius-sm: 4px;
+    --ui-radius-md: 8px;
+    --ui-radius-lg: 14px;
+    --ui-radius-xl: 22px;
+
+    /* Elevation */
+    --ui-shadow-1: 0 1px 0 rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+    --ui-shadow-2: 0 4px 16px rgba(0, 0, 0, 0.45);
+    --ui-shadow-3: 0 18px 40px rgba(0, 0, 0, 0.55);
+    --ui-shadow-press: inset 0 -3px 0 rgba(0, 0, 0, 0.25);
+    --ui-glow-green: 0 0 0 3px rgba(129, 182, 76, 0.25);
+
+    /* Legacy aliases */
+    --ui-blue: var(--ui-green);
+    --ui-lavender: var(--ui-amber);
+
+    --rt-color-dark: #0e0d0b !important;
 }
 
-body {
+html, body {
     margin: 0;
     overflow-x: hidden;
 
     background-color: var(--ui-shade-1);
+    color: var(--ui-text);
+
+    /* Subtle warm felt grain — adds depth without noise */
+    background-image:
+        radial-gradient(
+            1200px 600px at 10% -10%,
+            rgba(129, 182, 76, 0.06),
+            transparent 60%
+        ),
+        radial-gradient(
+            900px 500px at 110% 10%,
+            rgba(233, 177, 90, 0.05),
+            transparent 55%
+        );
+    background-attachment: fixed;
 }
 
 * {
-    font-family: "Noto Sans";
+    font-family: "Nunito", "Noto Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: var(--ui-green);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--ui-green-hover);
+}
+
+:focus-visible {
+    outline: none;
+    box-shadow: var(--ui-glow-green);
+    border-radius: var(--ui-radius-sm);
 }
 
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
 
-    background-color: #424242;
+    background-color: var(--ui-shade-2);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: white;
+    background-color: var(--ui-shade-5);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--ui-green);
 }
 
 ::-webkit-scrollbar-corner {
-    background-color: #919191;
+    background-color: var(--ui-shade-2);
+}
+
+::selection {
+    background-color: var(--ui-green);
+    color: #fff;
 }

@@ -31,7 +31,8 @@ function BoardArea() {
         setCurrentStateTreeNode,
         dispatchCurrentNodeUpdate,
         autoplayEnabled,
-        boardFlipped
+        boardFlipped,
+        setAutoplayEnabled
     } = useAnalysisBoardStore();
 
     const evaluation = useEvaluation();
@@ -42,6 +43,9 @@ function BoardArea() {
             setGameAnalysisOpen(true);
             setActiveTab(AnalysisTab.ANALYSIS);
         }
+
+        // Any manual board move disables autoplay
+        setAutoplayEnabled(false);
 
         setCurrentStateTreeNode(prev => {
             const createdNode = addChildMove(prev, move.san);

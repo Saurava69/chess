@@ -34,7 +34,7 @@ export function generateSEOMetaTags(seoData: SEOData, url: string): string {
     ${keywords ? `<meta name="keywords" content="${keywords}">` : ""}
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="SyntaxEngineer">
+    <meta name="author" content="chess.sauravx">
     <meta name="language" content="English">
     
     <!-- Open Graph Meta Tags -->
@@ -51,7 +51,7 @@ export function generateSEOMetaTags(seoData: SEOData, url: string): string {
     <meta name="twitter:title" content="${twitterTitle}">
     <meta name="twitter:description" content="${twitterDescription}">
     <meta name="twitter:image" content="${twitterImage}">
-    <meta name="twitter:site" content="@syntaxengineer">
+    <meta name="twitter:site" content="@chess.sauravx">
     
     <!-- Theme and Favicon -->
     <meta name="theme-color" content="#47acff">
@@ -63,7 +63,7 @@ export function generateSEOMetaTags(seoData: SEOData, url: string): string {
     <link rel="manifest" href="/manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="SyntaxEngineer">
+    <meta name="apple-mobile-web-app-title" content="chess.sauravx">
     <meta name="mobile-web-app-capable" content="yes">
     
     <!-- Performance and Preloading -->
@@ -89,34 +89,34 @@ export function generateSEOMetaTags(seoData: SEOData, url: string): string {
 
 export const seoDataMap: Record<string, SEOData> = {
     analysis: {
-        title: "Chess Game Analysis - Free Online Chess Analysis Tool | SyntaxEngineer",
+        title: "Chess Game Analysis - Free Online Chess Analysis Tool | chess.sauravx",
         description: "Analyze your chess games for free with our powerful chess engine. Find mistakes, discover better moves, and improve your chess skills with detailed game analysis.",
         keywords: "chess analysis, chess engine, free chess analysis, chess game analyzer, chess improvement, chess mistakes",
         ogType: "website",
         twitterCard: "summary_large_image"
     },
     archive: {
-        title: "Chess Game Archive - Store and Organize Your Games | SyntaxEngineer",
+        title: "Chess Game Archive - Store and Organize Your Games | chess.sauravx",
         description: "Keep all your chess games organized in one place. Save, search, and review your games with our free chess game archive and database.",
         keywords: "chess archive, chess database, chess games collection, pgn viewer, chess game storage",
         ogType: "website"
     },
     tutorials: {
-        title: "Chess Tutorials - Learn Chess Strategy, Tactics & Openings | SyntaxEngineer",
+        title: "Chess Tutorials - Learn Chess Strategy, Tactics & Openings | chess.sauravx",
         description: "Master chess with our comprehensive tutorial series. Learn tactics, strategy, openings, and endgames from beginner to advanced level with expert guidance.",
         keywords: "chess tutorials, learn chess, chess lessons, chess strategy, chess tactics, chess openings guide, chess endgame tutorial, chess improvement",
         ogType: "website",
         twitterCard: "summary_large_image"
     },
     openings: {
-        title: "Chess Openings Guide - Queen's Gambit, Sicilian Defense & More | SyntaxEngineer",
+        title: "Chess Openings Guide - Queen's Gambit, Sicilian Defense & More | chess.sauravx",
         description: "Complete chess openings guide covering Queen's Gambit, Sicilian Defense, Italian Game, and other popular openings. Learn opening principles and build your repertoire.",
         keywords: "chess openings, Queen's Gambit, Sicilian Defense, Italian Game, chess opening theory, opening principles, chess repertoire",
         ogType: "article",
         twitterCard: "summary_large_image"
     },
     news: {
-        title: "Chess News - Latest Updates and Tournament Coverage | SyntaxEngineer",
+        title: "Chess News - Latest Updates and Tournament Coverage | chess.sauravx",
         description: "Stay updated with the latest chess news, tournament results, and chess community updates. Get insights from the world of competitive chess.",
         keywords: "chess news, chess tournaments, chess updates, chess community, chess events",
         ogType: "blog"
@@ -128,8 +128,8 @@ export const seoDataMap: Record<string, SEOData> = {
         ogType: "website"
     },
     profile: {
-        title: "Your Chess Profile - SyntaxEngineer",
-        description: "View and manage your chess profile, track your progress, and customize your chess learning experience on SyntaxEngineer.",
+        title: "Your Chess Profile - chess.sauravx",
+        description: "View and manage your chess profile, track your progress, and customize your chess learning experience on chess.sauravx.",
         keywords: "chess profile, chess statistics, chess progress tracking",
         ogType: "profile"
     }

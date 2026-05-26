@@ -94,14 +94,14 @@ function News() {
             <div className={styles.socialsContainer}>
                 <SocialLink
                     icon={iconYouTube}
-                    title="SyntaxEngineer"
-                    url="https://www.youtube.com/@SyntaxEngineer"
+                    title="chess.sauravx"
+                    url="https://www.youtube.com/@chess.sauravx"
                 />
 
                 <SocialLink
                     icon={iconChessCom}
                     iconSize="23px"
-                    title="SyntaxEngineer"
+                    title="chess.sauravx"
                     url=""
                 />
             </div>

@@ -1,128 +1,167 @@
+/* ─── Nav wrapper ─────────────────────────────────────────────── */
 .wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    padding: 0 10px;
+    padding: 0 20px;
     box-sizing: border-box;
     width: 100%;
-    height: 65px;
+    height: 60px;
     z-index: 100;
     position: sticky;
     top: 0;
 
-    background-color: var(--ui-shade-2);
-    color: white;
+    background: var(--ui-shade-2);
+    border-bottom: 1px solid var(--ui-shade-4);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
 
     overflow-x: auto;
 }
 
 .wrapper::-webkit-scrollbar {
-    height: 5px;
+    height: 0;
 }
 
-.menuButton {
-    display: none;
-
-    cursor: pointer;
-    transition-duration: 0.3s;
-}
-
-.menuButton:hover {
-    transform: scale(1.05);
-}
-
-@media (max-width: 800px) {
-    .menuButton {
-        display: block;
-    }
-}
-
-@media (max-width: 1000px) {
-    .typographyText {
-        display: none;
-    }
-}
-
-@media (max-width: 800px) {
-    .typographyText {
-        display: flex;
-    }
-}
-
-@media (max-width: 700px) {
-    .typographyText {
-        display: none;
-    }
-}
-
+/* ─── Sections ────────────────────────────────────────────────── */
 .section {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 4px;
     flex-shrink: 0;
     height: 100%;
 }
 
-.tabs {
-    display: flex;
-    flex-shrink: 0;
-    margin-left: 5px;
-    max-width: 100%;
-    height: 100%;
+/* ─── Hamburger ───────────────────────────────────────────────── */
+.menuButton {
+    display: none;
+    padding: 7px;
+    border-radius: var(--ui-radius-md);
+    cursor: pointer;
+    opacity: 0.75;
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.menuButton:hover {
+    background: var(--ui-shade-4);
+    opacity: 1;
 }
 
 @media (max-width: 800px) {
-    .tabs {
-        display: none;
-    }
+    .menuButton { display: block; }
 }
 
+/* ─── Logo text ───────────────────────────────────────────────── */
+.typographyText {
+    margin-left: 4px;
+}
+
+@media (max-width: 1000px) {
+    .typographyText { display: none; }
+}
+@media (max-width: 800px) {
+    .typographyText { display: flex; }
+}
+@media (max-width: 700px) {
+    .typographyText { display: none; }
+}
+
+/* ─── Centre nav tabs ─────────────────────────────────────────── */
+.tabs {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: 16px;
+    height: 100%;
+    gap: 2px;
+}
+
+@media (max-width: 800px) {
+    .tabs { display: none; }
+}
+
+/* ─── Right-side buttons ──────────────────────────────────────── */
 .support {
-    background: linear-gradient(
-        -225deg, #22e1FF 0%, #1d8fe1 48%, #625eb1 100%
-    );
+    background: linear-gradient(135deg, var(--ui-amber), var(--ui-amber-deep));
+    border: none;
+    border-radius: var(--ui-radius-md);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.support:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
 }
 
 .signIn {
-    gap: 5px;
-    padding: 7px;
-    padding-right: 10px;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--ui-green);
+    color: #14210a;
+    font-weight: 800;
+    font-family: "Nunito";
+    font-size: 0.9rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.12);
+    transition: background-color 0.15s ease, transform 0.15s ease;
+    letter-spacing: 0.01em;
+}
 
-    font-family: "Nunito";    
+.signIn:hover {
+    background: var(--ui-green-hover);
+    transform: translateY(-1px);
+    color: #14210a;
 }
 
 .settings {
-    padding: 7px;
-    
-    background-color: var(--ui-shade-2);
+    padding: 8px;
+    background: transparent;
+    border-radius: var(--ui-radius-md);
+    opacity: 0.65;
+    transition: background-color 0.15s ease, opacity 0.15s ease;
 }
 
-.profileMenu {
-    padding: 0 5px;
+.settings:hover {
+    background: var(--ui-shade-4);
+    opacity: 1;
+}
 
-    user-select: none;
+/* ─── Profile dropdown trigger ────────────────────────────────── */
+.profileMenu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: var(--ui-radius-md);
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.profileMenu:hover {
+    background: var(--ui-shade-3);
+}
+
+.profileUsername {
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
+    color: var(--ui-text);
 }
 
 .profileIcon {
-    display: none;
-    height: 35px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--ui-shade-5);
 }
 
 @media (max-width: 450px) {
-    .profileUsername {
-        display: none;
-    }
-
-    .profileIcon {
-        display: inline;
-    }
+    .profileUsername { display: none; }
 }
 
 .profileImage {
-    height: 42px;
+    height: 34px;
     aspect-ratio: 1 / 1;
-
     border-radius: 50%;
-    background-color: aquamarine;
+    background: var(--ui-green);
+    box-shadow: 0 0 0 2px var(--ui-shade-2), 0 0 0 3px var(--ui-shade-5);
 }

@@ -5,37 +5,26 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const whitelistedHostnames = [
-    /.*\.?SyntaxEngineer\.com/,
+    /^(?:[a-z0-9-]+\.)*chess\.sauravx\.com$/i,
     // Cloud deployment platforms
-    /.*\.railway\.app$/,
-    /.*\.render\.com$/,
-    /.*\.onrender\.com$/,  
-    /.*\.vercel\.app$/,
-    /.*\.herokuapp\.com$/,
-    // Custom domains (add your own here)
-    /.*\.syntaxengineer\.com$/,
-    /^chess\.sauravx\.com$/,
-    ...(process.env.NODE_ENV == "development"
-        ? [/localhost/] : []
+    /^[a-z0-9-]+\.railway\.app$/i,
+    /^[a-z0-9-]+\.onrender\.com$/i,
+    /^[a-z0-9-]+\.vercel\.app$/i,
+    /^[a-z0-9-]+\.herokuapp\.com$/i,
+    ...(process.env.NODE_ENV === "development"
+        ? [/^localhost$/i] : []
     )
 ];
 
 const hostnameWhitelist: RequestHandler = (req, res, next) => {
     const hostWhitelisted = whitelistedHostnames.some(
-        hostnameRegex => hostnameRegex.test(req.hostname)
+        re => re.test(req.hostname)
     );
 
-    // Debug logging for production issues
     if (!hostWhitelisted) {
-        console.log("🚨 HOSTNAME REJECTED:", req.hostname);
-        console.log("📋 Request host header:", req.get("host"));
-        console.log("🌍 NODE_ENV:", process.env.NODE_ENV);
-        return res.status(StatusCodes.UNAUTHORIZED).json({
-            error: "Unauthorized hostname",
-            hostname: req.hostname,
-            host: req.get("host"),
-            env: process.env.NODE_ENV
-        });
+        // Log server-side only — do not expose details in the response
+        console.warn(`[security] rejected hostname: ${req.hostname}`);
+        return res.sendStatus(StatusCodes.UNAUTHORIZED);
     }
 
     next();

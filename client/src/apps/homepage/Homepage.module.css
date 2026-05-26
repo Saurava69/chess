@@ -1,0 +1,824 @@
+/* ─── Page shell ──────────────────────────────────────────────── */
+.shell {
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ─── Hero ────────────────────────────────────────────────────── */
+.hero {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 72px 32px 64px;
+}
+
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 44px;
+        padding: 48px 20px 40px;
+        text-align: center;
+    }
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 13px;
+    margin-bottom: 20px;
+    border-radius: 999px;
+    background: rgba(129, 182, 76, 0.13);
+    color: var(--ui-green-hover);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    border: 1px solid rgba(129, 182, 76, 0.25);
+}
+
+.eyebrow::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--ui-green);
+    box-shadow: 0 0 0 3px rgba(129, 182, 76, 0.22);
+    animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(129, 182, 76, 0.22); }
+    50%       { box-shadow: 0 0 0 6px rgba(129, 182, 76, 0); }
+}
+
+.title {
+    font-family: "Nunito";
+    font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: #fff;
+    margin: 0 0 16px;
+}
+
+.titleAccent {
+    color: var(--ui-green);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: var(--ui-text-dim);
+    max-width: 520px;
+    margin: 0 0 32px;
+}
+
+@media (max-width: 900px) {
+    .subtitle { margin-left: auto; margin-right: auto; }
+}
+
+/* CTA buttons */
+.ctaRow {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+    .ctaRow { justify-content: center; }
+}
+
+.ctaPrimary,
+.ctaSecondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 28px;
+    border: none;
+    border-radius: 6px;
+    font-family: "Nunito";
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.15s ease, filter 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ctaPrimary {
+    background: var(--ui-green);
+    color: #14210a;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
+.ctaPrimary:hover {
+    background: var(--ui-green-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(129, 182, 76, 0.35);
+    color: #14210a;
+}
+
+.ctaSecondary {
+    background: var(--ui-shade-3);
+    color: var(--ui-text);
+    border: 1px solid var(--ui-shade-5);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+.ctaSecondary:hover {
+    background: var(--ui-shade-4);
+    transform: translateY(-2px);
+    color: var(--ui-text);
+    border-color: var(--ui-shade-6);
+}
+
+.ctaArrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.ctaPrimary:hover .ctaArrow,
+.ctaSecondary:hover .ctaArrow {
+    transform: translateX(3px);
+}
+
+/* Hero stats strip */
+.statsStrip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ui-shade-4);
+}
+
+@media (max-width: 900px) {
+    .statsStrip { justify-content: center; }
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-right: 28px;
+    margin-right: 28px;
+    border-right: 1px solid var(--ui-shade-4);
+}
+
+.statItem:last-child {
+    border-right: none;
+    padding-right: 0;
+    margin-right: 0;
+}
+
+.statValue {
+    font-family: "Nunito";
+    font-size: 1.55rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -0.01em;
+}
+
+.statLabel {
+    font-size: 0.72rem;
+    color: var(--ui-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+}
+
+/* ─── Hero board ──────────────────────────────────────────────── */
+.boardOuter {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-self: end;
+}
+
+@media (max-width: 900px) {
+    .boardOuter { justify-self: center; }
+}
+
+.boardPlayers {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px;
+}
+
+.boardPlayer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.playerAvatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--ui-shade-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--ui-text-dim);
+    border: 2px solid var(--ui-shade-5);
+    overflow: hidden;
+}
+
+.playerAvatar span {
+    font-size: 0.95rem;
+}
+
+.playerName {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ui-text);
+}
+
+.playerRating {
+    font-size: 0.75rem;
+    color: var(--ui-text-muted);
+    font-weight: 600;
+}
+
+.clockBadge {
+    padding: 4px 10px;
+    background: var(--ui-shade-4);
+    border-radius: 4px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ui-text-dim);
+    letter-spacing: 0.04em;
+    border: 1px solid var(--ui-shade-5);
+}
+
+.clockBadge.active {
+    background: var(--ui-shade-5);
+    color: #fff;
+    border-color: var(--ui-shade-6);
+}
+
+.boardFrame {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #1a1814;
+    border: 1px solid var(--ui-shade-4);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4);
+}
+
+@media (max-width: 900px) {
+    .boardFrame { max-width: 360px; }
+}
+
+.board {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    aspect-ratio: 1 / 1;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.square {
+    position: relative;
+}
+
+.squareLight { background: var(--ui-cream); }
+.squareDark  { background: var(--ui-green-deep); }
+
+.lastMove {
+    box-shadow: inset 0 0 0 100px rgba(255, 255, 80, 0.28);
+}
+
+.piece {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.3rem, 3.8vw, 2.2rem);
+    line-height: 1;
+    user-select: none;
+    animation: piece-in 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.2) backwards;
+}
+
+.pieceWhite {
+    color: #fafaf2;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+}
+
+.pieceBlack {
+    color: #2a2520;
+    filter: drop-shadow(0 1px 1px rgba(255,255,255,0.1));
+}
+
+@keyframes piece-in {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: none; }
+}
+
+.boardCoords {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    grid-template-rows: 1fr 14px;
+    gap: 2px;
+}
+
+.coordFile {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 2px;
+}
+
+.coordRank {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2px 0;
+}
+
+.coordLabel {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--ui-text-muted);
+    line-height: 1;
+    text-align: center;
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: 0;
+}
+
+/* Move ticker under board */
+.moveTicker {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 4px 0;
+}
+
+.moveTickerDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ui-green);
+    box-shadow: 0 0 0 3px rgba(129,182,76,0.2);
+    animation: pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.moveTickerText {
+    font-size: 0.78rem;
+    color: var(--ui-text-muted);
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: 0.02em;
+}
+
+.moveTickerMove {
+    color: var(--ui-text-dim);
+    font-weight: 700;
+}
+
+/* ─── Stats bar ───────────────────────────────────────────────── */
+.statsBar {
+    background: var(--ui-shade-2);
+    border-bottom: 1px solid var(--ui-shade-4);
+    border-top: 1px solid var(--ui-shade-4);
+}
+
+.statsBarInner {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+}
+
+.statBarItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.statBarDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ui-green);
+    box-shadow: 0 0 6px rgba(129,182,76,0.5);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.statBarValue {
+    font-family: "Nunito";
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: #fff;
+    letter-spacing: -0.01em;
+}
+
+.statBarLabel {
+    font-size: 0.82rem;
+    color: var(--ui-text-dim);
+    font-weight: 600;
+}
+
+/* ─── Features section ────────────────────────────────────────── */
+.featuresSection {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 64px 32px;
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.sectionTitle {
+    font-family: "Nunito";
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.sectionLink {
+    color: var(--ui-text-muted);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+}
+
+.sectionLink:hover {
+    color: var(--ui-green-hover);
+}
+
+.featureGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+@media (max-width: 1000px) {
+    .featureGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+    .featureGrid { grid-template-columns: 1fr; }
+}
+
+.featureTile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 22px 20px;
+    background: var(--ui-shade-3);
+    border: 1px solid var(--ui-shade-4);
+    border-radius: 8px;
+    color: var(--ui-text);
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.featureTile:hover {
+    transform: translateY(-4px);
+    border-color: rgba(129, 182, 76, 0.35);
+    background: var(--ui-shade-4);
+    color: var(--ui-text);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+
+.featureTileGlow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(280px 160px at 110% -10%, rgba(129,182,76,0.1), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.featureTile:hover .featureTileGlow {
+    opacity: 1;
+}
+
+.tileIconWrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: var(--ui-shade-2);
+    border: 1px solid var(--ui-shade-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.featureTile:hover .tileIconWrap {
+    background: rgba(129, 182, 76, 0.12);
+    border-color: rgba(129, 182, 76, 0.3);
+}
+
+.tileIconWrap img {
+    width: 28px;
+    height: 28px;
+}
+
+.tileTitle {
+    font-family: "Nunito";
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+}
+
+.tileDesc {
+    font-size: 0.875rem;
+    color: var(--ui-text-dim);
+    line-height: 1.55;
+    margin: 0;
+    flex: 1;
+}
+
+.tileCta {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 16px;
+    color: var(--ui-green);
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.tileCtaArrow {
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.featureTile:hover .tileCtaArrow {
+    transform: translateX(4px);
+}
+
+/* ─── Bottom feature row ──────────────────────────────────────── */
+.bottomRow {
+    max-width: 1160px;
+    margin: 0 auto 80px;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 12px;
+}
+
+@media (max-width: 860px) {
+    .bottomRow {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+        margin-bottom: 56px;
+    }
+    .featuresSection {
+        padding: 48px 20px;
+    }
+}
+
+/* Puzzle card */
+.puzzleCard {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 28px;
+    background: var(--ui-shade-3);
+    border: 1px solid var(--ui-shade-4);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.puzzleCard::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(129,182,76,0.07) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.puzzleCard:hover {
+    border-color: rgba(129, 182, 76, 0.3);
+}
+
+.puzzleMiniWrap {
+    flex-shrink: 0;
+    position: relative;
+    width: 110px;
+    height: 110px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    border: 1px solid var(--ui-shade-5);
+}
+
+.puzzleMini {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    width: 100%;
+    height: 100%;
+}
+
+.puzzleMiniPiece {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.6rem;
+    color: #1a1814;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.puzzleBody {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.kicker {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ui-amber);
+}
+
+.puzzleTitle {
+    font-family: "Nunito";
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+    line-height: 1.15;
+}
+
+.puzzleDesc {
+    font-size: 0.88rem;
+    color: var(--ui-text-dim);
+    margin: 2px 0 12px;
+    line-height: 1.5;
+}
+
+.puzzleCta {
+    align-self: flex-start;
+    padding: 9px 18px;
+    background: var(--ui-green);
+    color: #14210a;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 0.875rem;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.3);
+}
+
+.puzzleCta:hover {
+    background: var(--ui-green-hover);
+    transform: translateY(-1px);
+    color: #14210a;
+}
+
+@media (max-width: 580px) {
+    .puzzleCard {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Engine card */
+.engineCard {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 28px;
+    background: var(--ui-shade-3);
+    border: 1px solid var(--ui-shade-4);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.engineCard::after {
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(129,182,76,0.08), transparent 65%);
+    pointer-events: none;
+}
+
+.engineKicker {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ui-green);
+}
+
+.engineTitle {
+    font-family: "Nunito";
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #fff;
+    margin: 0 0 4px;
+    line-height: 1.2;
+}
+
+.engineBars {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 6px;
+}
+
+.engineBar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.8rem;
+    color: var(--ui-text-dim);
+}
+
+.engineMove {
+    width: 28px;
+    font-weight: 700;
+    color: var(--ui-text);
+    flex-shrink: 0;
+}
+
+.engineBarTrack {
+    flex: 1;
+    height: 5px;
+    background: var(--ui-shade-2);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.engineBarFill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--ui-green), var(--ui-green-hover));
+    border-radius: 99px;
+    animation: bar-grow 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+    transform-origin: left;
+}
+
+@keyframes bar-grow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+
+.engineBarScore {
+    width: 34px;
+    text-align: right;
+    color: var(--ui-green-hover);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* ─── Fade-in animation ───────────────────────────────────────── */
+.fadeIn {
+    animation: fade-up 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+}

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import useGameSelector from "@/hooks/useGameSelector";
 import useAnalysisProgressStore from "@analysis/stores/AnalysisProgressStore";
+import useAICommentaryStore from "@analysis/stores/AICommentaryStore";
+import { useAuthedProfile } from "@/hooks/api/useProfile";
 import GameSelector from "@/components/chess/GameSelector";
 import LogMessage from "@/components/common/LogMessage";
 
@@ -17,13 +19,21 @@ function GameSelection() {
         state => state.setEvaluationController
     );
 
+    const { setAiCoachEnabled, clearCommentaries } = useAICommentaryStore();
+    const { status: profileStatus } = useAuthedProfile();
+    const isSignedIn = profileStatus === "success";
+
     const [ statusMessage, setStatusMessage ] = useState<string>();
     const [ importError, setImportError ] = useState<string>();
 
     const importSelectedGame = useImportGame();
     const evaluateGame = useEvaluateGame();
 
-    async function onAnalyseClick() {
+    async function onAnalyseClick(withAI = false) {
+        setImportError(undefined);
+        clearCommentaries();
+        setAiCoachEnabled(withAI);
+
         try {
             var importedGame = await importSelectedGame(setStatusMessage);
         } catch (err) {
@@ -34,14 +44,29 @@ function GameSelection() {
 
         setEvaluationController(controller);
     }
-    
+
     return <>
         <GameSelector
             saveLocalStorage
             onGameSelect={setSelectedGame}
         />
 
-        <AnalyseButton onClick={onAnalyseClick} />
+        <div className={styles.buttonRow}>
+            <AnalyseButton onClick={() => onAnalyseClick(false)} />
+            {isSignedIn
+                ? <button
+                    className={styles.aiAnalyseBtn}
+                    onClick={() => onAnalyseClick(true)}
+                >
+                    <span className={styles.aiSpark}>✦</span>
+                    Analyse with AI
+                </button>
+                : <a href="/signin" className={styles.aiSignInBtn}>
+                    <span className={styles.aiSpark}>✦</span>
+                    Sign in to Analyse with AI
+                </a>
+            }
+        </div>
 
         {statusMessage && <i className={styles.statusMessage}>
             {statusMessage}

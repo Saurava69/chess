@@ -1,49 +1,68 @@
+/* ─── Tab strip ───────────────────────────────────────────────── */
 .wrapper {
     display: flex;
-    padding: 5px;
-    box-sizing: border-box;
-
-    border-radius: 10px;
-
-    background-color: var(--ui-shade-4);
+    gap: 2px;
+    padding: 4px;
+    background: var(--ui-shade-3);
+    border-radius: 8px;
+    border: 1px solid var(--ui-shade-4);
 }
 
+/* ─── Individual tab ──────────────────────────────────────────── */
 .button {
-    margin-bottom: 3px;
-    width: 50%;
-
-    color: #777d85;
-    box-shadow: 0 3px 0 #24262b;
-
-    transform: translateY(0px);
-    overflow-wrap: anywhere;
-
-    transition: all 0.3s ease;
+    flex: 1;
+    padding: 6px 4px;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--ui-text-muted);
+    font-family: "Nunito", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+    box-shadow: none;
+    margin-bottom: 0;
+    transform: none;
 }
 
 .button:hover {
-    color: white;
-
-    filter: brightness(1) !important;
+    background: var(--ui-shade-4) !important;
+    color: var(--ui-text) !important;
+    filter: none !important;
 }
 
 .button:active {
-    box-shadow: 0 0 0 #24262b;
-    transform: translateY(3px);
+    transform: none;
+    box-shadow: none;
 }
 
+/* ─── Active tab ──────────────────────────────────────────────── */
 .selectedButton {
-    background-color: var(--ui-shade-6);
-
-    color: white;
+    background: var(--ui-shade-5) !important;
+    color: #fff !important;
 }
 
-.reportButton {
-    border-radius: 10px 0 0 10px;
-    border-right: 1px solid var(--ui-shade-4);
-}
-
+/* ─── Shape overrides (now all tabs are uniform) ──────────────── */
+.reportButton,
 .analysisButton {
-    border-radius: 0 10px 10px 0;
-    border-left: 1px solid var(--ui-shade-4);
+    border-radius: 6px;
+    border: none;
+}
+
+/* ─── AI tab accent ───────────────────────────────────────────── */
+.aiButton {
+    border-radius: 6px;
+    border: none;
+    color: var(--ui-green);
+}
+
+.aiButton:hover {
+    color: var(--ui-green-hover) !important;
+}
+
+.aiButton.selectedButton {
+    color: #fff !important;
+    background: rgba(129, 182, 76, 0.2) !important;
+    outline: 1px solid rgba(129, 182, 76, 0.35);
 }

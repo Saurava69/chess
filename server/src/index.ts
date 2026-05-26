@@ -32,10 +32,17 @@ async function main() {
     app.use(cookieParser());
     app.use(hostnameWhitelist);
 
-    // Static assets
+    // Static assets — JS/CSS bundles must revalidate on every request
+    const noCacheOptions = {
+        setHeaders: (res: import("http").ServerResponse, path: string) => {
+            if (/\.(js|css)$/.test(path)) {
+                res.setHeader("Cache-Control", "no-cache, must-revalidate");
+            }
+        }
+    };
     app.use("/",
-        express.static("client/dist"),
-        express.static("client/public")
+        express.static("client/dist", noCacheOptions),
+        express.static("client/public", noCacheOptions)
     );
 
     // Normal endpoints

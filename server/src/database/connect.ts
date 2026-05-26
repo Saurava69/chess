@@ -21,7 +21,7 @@ async function connectDatabase() {
 
     try {
         await mongoose.connect(
-            process.env.DATABASE_URI || "mongodb://database/SyntaxEngineer"
+            process.env.DATABASE_URI || "mongodb://database/chess.sauravx"
         );
         await initialiseIndexes();
         
