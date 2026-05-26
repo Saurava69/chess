@@ -14,6 +14,7 @@ const whitelistedHostnames = [
     /.*\.herokuapp\.com$/,
     // Custom domains (add your own here)
     /.*\.syntaxengineer\.com$/,
+    /^chess\.sauravx\.com$/,
     ...(process.env.NODE_ENV == "development"
         ? [/localhost/] : []
     )
