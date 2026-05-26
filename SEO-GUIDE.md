@@ -121,7 +121,7 @@ This document outlines all the SEO improvements implemented to make your chess a
 # Submit your sitemap
 1. Visit Google Search Console
 2. Add your property: https://chess.sauravx.com 
-3. Submit sitemap: https://chess.sauravx.com /sitemap.xml
+3. Submit sitemap: https://chess.sauravx.com/sitemap.xml
 4. Monitor indexing status
 ```
 

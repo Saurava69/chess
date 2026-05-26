@@ -106,7 +106,7 @@ export function generateBreadcrumbData(url: string): string {
         item["@type"] = "ListItem";
         item.position = index + 2; // Start from 2 since Home is 1
         item.name = segment.charAt(0).toUpperCase() + segment.slice(1);
-        item.item = `https://chess.sauravx.com /${pathSegments.slice(0, index + 1).join("/")}`;
+        item.item = `https://chess.sauravx.com/${pathSegments.slice(0, index + 1).join("/")}`;
         return item;
     });
 
@@ -114,7 +114,7 @@ export function generateBreadcrumbData(url: string): string {
     homeItem["@type"] = "ListItem";
     homeItem.position = 1;
     homeItem.name = "Home";
-    homeItem.item = "https://chess.sauravx.com /";
+    homeItem.item = "https://chess.sauravx.com/";
 
     breadcrumbs.unshift(homeItem);
 
