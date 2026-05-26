@@ -8,6 +8,7 @@ import useAnalysisTabStore from "@analysis/stores/AnalysisTabStore";
 import ClassifiedMoveCard from "@analysis/components/report/ClassifiedMoveCard";
 import StateTreeTraverser from "@/components/chess/StateTreeTraverser";
 import useBatchCommentaryGeneration from "@analysis/hooks/useBatchCommentaryGeneration";
+import useAutoSave from "@analysis/hooks/useAutoSave";
 
 import TabBar from "./TabBar";
 import AnalysisProgress from "./AnalysisProgress";
@@ -41,6 +42,8 @@ function AnalysisPanel({
 
     // Generates AI coaching commentary for all mainline moves after analysis completes
     useBatchCommentaryGeneration();
+    // Auto-saves the game after Stockfish analysis (non-AI mode)
+    useAutoSave();
 
     return <div
         className={`${styles.wrapper} ${className}`}

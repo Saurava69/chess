@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { getNodeChain } from "shared/types/game/position/StateTreeNode";
 import { getTopEngineLine } from "shared/types/game/position/EngineLine";
@@ -6,6 +7,8 @@ import AnalysisStatus from "@analysis/constants/AnalysisStatus";
 import useAnalysisGameStore from "@analysis/stores/AnalysisGameStore";
 import useAnalysisProgressStore from "@analysis/stores/AnalysisProgressStore";
 import useAICommentaryStore from "@analysis/stores/AICommentaryStore";
+import { useAuthedProfile } from "@/hooks/api/useProfile";
+import { archiveGame } from "@/lib/gameArchive";
 
 // Only these classifications get AI coaching — the rest are self-explanatory
 const COACH_CLASSIFICATIONS = new Set([
@@ -22,11 +25,14 @@ function formatEval(type: "centipawn" | "mate", value: number): string {
  * After server analysis completes (AWAITING_CAPTCHA → INACTIVE), collects all
  * notable mainline moves and sends them in ONE batch request to /api/ai/coachBatch.
  * The AI returns all commentaries as a single JSON response.
+ * When the batch completes, the game is auto-saved with AI commentary included.
  */
 function useBatchCommentaryGeneration() {
-    const { aiCoachEnabled } = useAICommentaryStore();
-    const analysisStatus     = useAnalysisProgressStore(state => state.analysisStatus);
-    const { analysisGame }   = useAnalysisGameStore();
+    const [ searchParams, setSearchParams ] = useSearchParams();
+    const { status: profileStatus }         = useAuthedProfile();
+    const { aiCoachEnabled }                = useAICommentaryStore();
+    const analysisStatus                    = useAnalysisProgressStore(state => state.analysisStatus);
+    const { analysisGame }                  = useAnalysisGameStore();
 
     const prevStatusRef = useRef<AnalysisStatus>(AnalysisStatus.INACTIVE);
 
@@ -78,6 +84,8 @@ function useBatchCommentaryGeneration() {
             };
         });
 
+        const existingId = searchParams.get("game") ?? undefined;
+
         (async () => {
             try {
                 const resp = await fetch("/api/ai/coachBatch", {
@@ -120,6 +128,27 @@ function useBatchCommentaryGeneration() {
                             status: "error",
                             text: "No commentary returned",
                         });
+                    }
+                }
+
+                // Auto-save with AI commentaries (only for logged-in users)
+                if (profileStatus === "success") {
+                    const doneCommentaries: Record<string, string> = {};
+                    for (const [nodeId, text] of Object.entries(data.commentaries)) {
+                        if (typeof text === "string") doneCommentaries[nodeId] = text;
+                    }
+
+                    const saveResult = await archiveGame(
+                        useAnalysisGameStore.getState().analysisGame,
+                        existingId,
+                        Object.keys(doneCommentaries).length > 0 ? doneCommentaries : undefined
+                    );
+
+                    if (saveResult.id) {
+                        setSearchParams(prev => ({
+                            ...Object.fromEntries(prev.entries()),
+                            game: saveResult.id!,
+                        }), { replace: true });
                     }
                 }
 
