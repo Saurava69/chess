@@ -5,7 +5,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const whitelistedHostnames = [
-    /^(?:[a-z0-9-]+\.)*chess\.sauravx\.com$/i,
+    // Primary domain — bare and any subdomain
+    /^chess\.sauravx\.com$/i,
+    /^(?:[a-z0-9-]+\.)+chess\.sauravx\.com$/i,
     // Cloud deployment platforms
     /^[a-z0-9-]+\.railway\.app$/i,
     /^[a-z0-9-]+\.onrender\.com$/i,
