@@ -255,70 +255,25 @@ export async function streamAI(
 
 // ─── Public entry point (non-streaming) ─────────────────────────────────────
 /**
- * Calls SAP AI Core without streaming and returns the full text response.
- * Uses the non-stream invoke endpoint for Anthropic models.
+ * Calls SAP AI Core and returns the full text response.
+ * Internally uses the streaming endpoint (/invoke-with-response-stream for
+ * Anthropic) since SAP AI Core may not expose a synchronous /invoke endpoint.
  */
 export async function callAI(
     messages: AIMessage[],
     systemPrompt: string,
 ): Promise<string> {
-    const token       = await resolveToken();
-    const deployUrl   = await resolveDeployUrl(token);
-    const model       = process.env.SAP_MODEL || "anthropic--claude-4.6-sonnet";
-    const resourceGroup = process.env.SAP_RESOURCE_GROUP || "default";
-    const isAnthropic = model.startsWith("anthropic--");
+    return new Promise((resolve, reject) => {
+        let fullText = "";
 
-    if (isAnthropic) {
-        const body = {
-            anthropic_version: "bedrock-2023-05-31",
-            max_tokens: 4096,
-            system: systemPrompt,
-            messages: messages.map((m) => ({ role: m.role, content: m.content })),
-        };
-
-        const response = await fetch(`${deployUrl}/invoke`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-                "AI-Resource-Group": resourceGroup,
-            },
-            body: JSON.stringify(body),
-        });
-
-        if (!response.ok) {
-            const err = await response.text();
-            throw new Error(`SAP AI Core error: ${response.status} — ${err}`);
-        }
-
-        const data = await response.json() as { content?: Array<{ type: string; text?: string }> };
-        return data.content?.find((b) => b.type === "text")?.text ?? "";
-
-    } else {
-        const body = {
-            model,
-            messages: [
-                { role: "system", content: systemPrompt },
-                ...messages.map((m) => ({ role: m.role, content: m.content })),
-            ],
-        };
-
-        const response = await fetch(`${deployUrl}/chat/completions`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-                "AI-Resource-Group": resourceGroup,
-            },
-            body: JSON.stringify(body),
-        });
-
-        if (!response.ok) {
-            const err = await response.text();
-            throw new Error(`SAP AI Core error: ${response.status} — ${err}`);
-        }
-
-        const data = await response.json() as { choices?: Array<{ message?: { content?: string } }> };
-        return data.choices?.[0]?.message?.content ?? "";
-    }
+        streamAI(messages, systemPrompt, (event) => {
+            if (event.type === "token") {
+                fullText += event.data.text;
+            } else if (event.type === "complete") {
+                resolve(fullText);
+            } else if (event.type === "error") {
+                reject(new Error(event.data.message));
+            }
+        }).catch(reject);
+    });
 }
