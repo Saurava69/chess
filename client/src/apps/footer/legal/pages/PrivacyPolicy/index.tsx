@@ -26,7 +26,7 @@ function PrivacyPolicy() {
 
                 <span>
                     1.1 "The Service", "The Website", "We", "Our", "Us" — refer to the
-                    SyntaxEngineer.com website and any related services we provide. This also
+                    chess.sauravx.com  website and any related services we provide. This also
                     represents the entity responsible for collecting your information.
                 </span>
 

@@ -126,4 +126,4 @@ The chess world anticipates continued growth in participation, technology integr
 
 ---
 
-*Stay updated with the latest chess news, tournament results, and analysis at SyntaxEngineer Chess.*
+*Stay updated with the latest chess news, tournament results, and analysis at chess.sauravx.com Chess.*

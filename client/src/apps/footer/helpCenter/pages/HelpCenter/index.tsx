@@ -36,9 +36,9 @@ function HelpCenter() {
 
             <a
                 className={styles.importantValue}
-                href="mailto:contact@SyntaxEngineer.com"
+                href="mailto:contact@chess.sauravx.com "
             >
-                <b>contact@SyntaxEngineer.com</b>
+                <b>contact@chess.sauravx.com </b>
             </a>
         </div>
 
@@ -64,7 +64,7 @@ function HelpCenter() {
                 </span>
             </div>
 
-            <GameSelector style={{ width: "min(365px, 100%)" }}/>
+            <GameSelector style={{ width: "min(365px, 100%)" }} />
 
             <span>
                 {t("analysis.part4")}

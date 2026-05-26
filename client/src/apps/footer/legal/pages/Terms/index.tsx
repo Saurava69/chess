@@ -19,7 +19,7 @@ function Terms() {
                 <h2 style={{ margin: 0 }}>1. Introduction</h2>
 
                 <span>
-                    SyntaxEngineer.com (“We”, “Us”, “Service(s)”, “Website”) provides chess game
+                    chess.sauravx.com  (“We”, “Us”, “Service(s)”, “Website”) provides chess game
                     analysis tools and related chess utilities. For any questions regarding these
                     Terms, you can contact us at:
                 </span>

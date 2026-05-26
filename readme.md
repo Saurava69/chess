@@ -1,228 +1,150 @@
-# ♟️ SyntaxEngineer Chess
+# Chess
 
-A comprehensive chess analysis and learning platform powered by Stockfish engine. Play, analyze, and improve your chess game with professional-quality tools - completely free.
+A chess analysis and learning platform built around the Stockfish engine. Play through games, run engine analysis, manage a personal archive, and follow chess news — all in a single self-hostable Node.js application.
 
-![Chess Analysis Platform](https://img.shields.io/badge/Chess-Analysis-blue) ![Stockfish](https://img.shields.io/badge/Engine-Stockfish-green) ![Free](https://img.shields.io/badge/Price-Free-brightgreen) ![React](https://img.shields.io/badge/Frontend-React-blue) ![Node.js](https://img.shields.io/badge/Backend-Node.js-green)
+Live site: [chess.sauravx.com](https://chess.sauravx.com)
 
-## 🌟 Features
+## Overview
 
-### ✅ **Currently Available**
-- **🔍 Advanced Chess Analysis** - Stockfish-powered game analysis with blunder detection
-- **🗄️ Personal Game Archive** - Store, organize, and manage your chess games
-- **📰 Chess News** - Latest chess news and tournament coverage
-- **🆘 Help Center** - Comprehensive support and tutorials
+This is a full-stack TypeScript application organized as an npm workspace:
 
-### 🔄 **Coming Soon**
-- **📚 Complete Chess Education** - Interactive learning system with structured courses
-- **🎯 Tactical Training** - Daily puzzles and pattern recognition exercises
-- **📊 Strategic Understanding** - Positional chess courses and evaluation training
-- **🔬 Advanced Analysis Tools** - Enhanced game review and improvement tracking
+- **`client/`** — React frontend, bundled with Webpack
+- **`server/`** — Express backend with server-side rendering
+- **`shared/`** — Types and utilities shared between client and server
 
-## 🚀 Getting Started
+## Features
 
-### Prerequisites
+**Available**
 
-- **Node.js** 22 or later
-- **MongoDB** (local or cloud instance)
-- **Git** for version control
+- Stockfish-powered game analysis with move classification and blunder detection
+- Personal game archive with import/export support
+- Chess news section
+- Help center and tutorials
+- Server-side rendering with structured data for SEO
+- Progressive Web App (offline support, installable)
+- Email-based authentication and Google OAuth sign-in
 
-### Installation
+**Planned**
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Saurava69/chess.git
-   cd chess
-   ```
+- Interactive courses and structured lessons
+- Tactical puzzle training
+- Opening repertoire builder
+- Deeper post-game review tools
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+## Requirements
 
-3. **Set up environment variables**
-   
-   Create a `.env` file in the root directory:
-   ```bash
-   # Required
-   AUTH_SECRET="your-random-secret-string-here"
-   ORIGIN="http://localhost:8080"
-   
-   # Optional
-   NODE_ENV="development"
-   PORT=8080
-   DATABASE_URI="mongodb://localhost:27017/syntaxengineer"
-   ANALYSIS_SESSION_ACTIONS=80
-   MAXIMUM_ARCHIVE_SIZE=50
-   ```
+- Node.js 22 or later
+- MongoDB (local instance or Atlas)
+- Git
 
-4. **Build the application**
-   ```bash
-   npm run build
-   ```
-
-5. **Start the server**
-   ```bash
-   npm start
-   ```
-
-The application will be available at `http://localhost:8080`
-
-## 📁 Project Structure
-
-```
-chess1/
-├── client/                 # Frontend React application
-│   ├── src/               # React components and logic
-│   ├── public/            # Static assets and HTML templates
-│   └── dist/              # Built frontend files
-├── server/                # Backend Node.js application
-│   ├── src/               # Server source code
-│   │   ├── routes/        # API and page routes
-│   │   ├── lib/           # Utilities and helpers
-│   │   └── database/      # Database models and connection
-│   └── dist/              # Built server files
-├── shared/                # Shared types and utilities
-├── docs/                  # Documentation
-└── package.json           # Root package configuration
-```
-
-## 🔧 Development
-
-### Build Commands
+## Quick Start
 
 ```bash
-# Build all workspaces
+git clone https://github.com/Saurava69/chess.git
+cd chess
+npm install
+cp environment-template.txt .env   # then edit .env
 npm run build
-
-# Build specific workspace
-npm run build -w client
-npm run build -w server
-npm run build -w shared
-
-# Quick build (backend only)
-npm run bbuild
+npm start
 ```
 
-### Development Workflow
+The server listens on `http://localhost:8080` by default.
 
-1. **Start development server**
-   ```bash
-   npm run bbuild && npm start
-   ```
+## Configuration
 
-2. **Make your changes** in the appropriate workspace (`client/`, `server/`, or `shared/`)
+All configuration is supplied through environment variables. A complete template lives in [`environment-template.txt`](environment-template.txt).
 
-3. **Rebuild and test**
-   ```bash
-   npm run bbuild && npm start
-   ```
+### Required
 
-## 🌐 Deployment
+| Variable | Description |
+|---|---|
+| `NODE_ENV` | `production` or `development` |
+| `ORIGIN` | Public URL of the deployment (e.g. `http://localhost:8080`) |
+| `AUTH_SECRET` | Random 32+ byte hex string. Generate with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` |
+| `DATABASE_URI` | MongoDB connection string |
 
-### Environment Variables for Production
+### Optional
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `PORT` | `8080` | HTTP listen port |
+| `ANALYSIS_SESSION_ACTIONS` | `80` | Per-session analysis quota |
+| `MAXIMUM_ARCHIVE_SIZE` | `50` | Max games per user archive |
+| `INTERNAL_PASSWORD` | — | Admin panel password |
+| `EMAIL_ACCOUNT` | — | Public contact address shown on the site |
+| `AUTOMATED_EMAIL_ADDRESS` | — | Sender address for verification and password-reset mail |
+| `AUTOMATED_EMAIL_KEY` | — | App password for the automated mail account |
+| `GOOGLE_OAUTH_CLIENT_ID` | — | Enables "Sign in with Google" |
+| `GOOGLE_OAUTH_CLIENT_SECRET` | — | Paired with the above |
+| `ADS_PUBLISHER_ID` | — | AdSense publisher ID |
+
+Email signup and password reset flows require all three `*EMAIL*` variables to be set. Google sign-in requires both `GOOGLE_OAUTH_*` variables.
+
+## Scripts
+
+| Command | Description |
+|---|---|
+| `npm run build` | Build all workspaces (client, server, shared) |
+| `npm run bbuild` | Build only `shared` and `server` (faster iteration when frontend is unchanged) |
+| `npm start` | Start the production server from `server/dist` |
+| `npm run dev` | Build everything and start |
+| `npm run lint` | Run ESLint across the repo |
+
+Typical backend-development loop:
 
 ```bash
-NODE_ENV="production"
-ORIGIN="https://yourdomain.com"
-AUTH_SECRET="secure-random-string"
-DATABASE_URI="mongodb://your-mongodb-uri"
-PORT=8080
+npm run bbuild && npm start
 ```
 
-### Deployment Platforms
+## Project Structure
 
-The application can be deployed to any Node.js hosting platform:
+```
+.
+├── client/                React frontend
+│   ├── src/               Components, hooks, pages
+│   └── public/            Static assets, HTML templates, locales
+├── server/                Express backend
+│   └── src/
+│       ├── routes/        HTTP and SSR routes
+│       ├── lib/           Auth, email, SEO, utilities
+│       └── database/      Mongoose models
+├── shared/                Cross-cutting types and helpers
+├── docs/                  Hosting and contributing guides
+├── Dockerfile
+└── compose.yaml
+```
 
-- **Railway** - Recommended for full-stack apps
-- **Render** - Great free tier with MongoDB support  
-- **Vercel** - Excellent for frontend with serverless functions
-- **Heroku** - Classic choice for Node.js applications
+## Deployment
 
-See [docs/hosting.md](docs/hosting.md) for detailed hosting instructions.
+The application runs on any Node.js host. Detailed instructions for specific platforms (Railway, Render, Vercel) are in [`docs/hosting.md`](docs/hosting.md).
 
-## 🛠️ Technology Stack
+A `Dockerfile` and `compose.yaml` are included for container-based deployment. At minimum, set `NODE_ENV=production`, `ORIGIN`, `AUTH_SECRET`, and `DATABASE_URI` in the target environment, then build and start the image.
 
-### Frontend
-- **React 18** - Modern React with hooks
-- **TypeScript** - Type-safe JavaScript
-- **Webpack** - Module bundling and optimization
-- **CSS Modules** - Scoped styling
+## Technology
 
-### Backend
-- **Node.js** - JavaScript runtime
-- **Express.js** - Web application framework
-- **MongoDB** - NoSQL database
-- **Better-Auth** - Authentication system
-- **TypeScript** - Server-side type safety
+- **Frontend** — React, TypeScript, Webpack, CSS Modules
+- **Backend** — Node.js, Express, Mongoose, Better-Auth
+- **Engine** — Stockfish 17 compiled to WebAssembly
+- **Storage** — MongoDB
 
-### Chess Engine
-- **Stockfish 17** - World's strongest chess engine
-- **WebAssembly** - High-performance chess analysis
-- **PGN Support** - Standard chess game notation
+## Security
 
-## 📊 SEO & Performance
+- Hostname whitelist to mitigate host-header attacks
+- Rate-limited analysis sessions
+- Session-based authentication via Better-Auth
+- Server-side input validation and CORS controls
 
-- **Server-Side Rendering** - Content visible to search engines
-- **Structured Data** - Rich snippets with JSON-LD
-- **Meta Tags** - Optimized for social sharing
-- **Sitemap Generation** - Dynamic XML sitemap
-- **PWA Features** - Service worker and app manifest
-- **Mobile Responsive** - Works on all device sizes
+Report security issues privately by email rather than through public GitHub issues.
 
-## 🔒 Security Features
+## Contributing
 
-- **Hostname Whitelist** - Prevents host header attacks
-- **CAPTCHA Integration** - Rate limiting for analysis
-- **Secure Authentication** - JWT-based user sessions
-- **Input Validation** - Sanitized user inputs
-- **CORS Protection** - Cross-origin request security
+Contributions are welcome. See [`docs/contributing.md`](docs/contributing.md) for the full guide. In brief:
 
-## 🤝 Contributing
+1. Fork the repository and create a feature branch.
+2. Make changes with accompanying tests where appropriate.
+3. Run `npm run lint` and `npm run build` locally.
+4. Open a pull request describing the change and its motivation.
 
-1. **Fork the repository**
-2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Commit your changes** (`git commit -m 'Add amazing feature'`)
-4. **Push to the branch** (`git push origin feature/amazing-feature`)
-5. **Open a Pull Request**
+## License
 
-### Development Guidelines
-
-- Follow TypeScript best practices
-- Write meaningful commit messages
-- Test your changes locally before submitting
-- Update documentation when adding features
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Support
-
-- **Documentation**: [docs/](docs/)
-- **Issues**: GitHub Issues
-- **Help Center**: Available in the application at `/help`
-
-## 🎯 Roadmap
-
-- [ ] Complete Chess Education system
-- [ ] Tactical puzzle database
-- [ ] Opening repertoire builder
-- [ ] Tournament tools and pairing
-- [ ] Chess.com/Lichess integration
-- [ ] Mobile app development
-- [ ] Multiplayer chess games
-- [ ] Advanced statistics and insights
-
-## ⭐ Acknowledgments
-
-- **Stockfish Team** - For the incredible chess engine
-- **Chess Community** - For feedback and suggestions
-- **Open Source Contributors** - For various libraries and tools
-
----
-
-**🔗 Links**
-- [Live Demo](https://syntaxengineer.com)
-- [Documentation](docs/)
-- [Chess Analysis](http://localhost:8080/analysis)
-- [Game Archive](http://localhost:8080/archive)
+Released under the MIT License. See [`LICENSE`](LICENSE) for the full text.

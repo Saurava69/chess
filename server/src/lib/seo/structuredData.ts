@@ -2,7 +2,7 @@ export function generateStructuredData(page: string, url: string): string {
     const baseData: Record<string, any> = {};
     baseData["@context"] = "https://schema.org";
     baseData["@type"] = "WebApplication";
-    baseData.name = "SyntaxEngineer Chess";
+    baseData.name = "chess.sauravx.com Chess";
     baseData.applicationCategory = "Game";
     baseData.operatingSystem = "Any";
     baseData.url = url;
@@ -25,7 +25,7 @@ export function generateStructuredData(page: string, url: string): string {
             applicationSubCategory: "Chess Analysis Tool",
             featureList: [
                 "Engine Analysis",
-                "Move Evaluation", 
+                "Move Evaluation",
                 "Opening Analysis",
                 "Endgame Analysis",
                 "Blunder Detection"
@@ -55,7 +55,7 @@ export function generateStructuredData(page: string, url: string): string {
             educationalLevel: "Beginner to Advanced",
             teaches: [
                 "Chess Tactics",
-                "Chess Strategy", 
+                "Chess Strategy",
                 "Chess Openings",
                 "Chess Endgames",
                 "Chess Analysis"
@@ -85,7 +85,7 @@ export function generateStructuredData(page: string, url: string): string {
         }
     };
 
-    const data = page && pageSpecificData[page] 
+    const data = page && pageSpecificData[page]
         ? { ...baseData, ...pageSpecificData[page] }
         : baseData;
 
@@ -96,7 +96,7 @@ ${JSON.stringify(data, null, 2)}
 
 export function generateBreadcrumbData(url: string): string {
     const pathSegments = url.split("/").filter(segment => segment);
-    
+
     if (pathSegments.length === 0) {
         return "";
     }
@@ -106,7 +106,7 @@ export function generateBreadcrumbData(url: string): string {
         item["@type"] = "ListItem";
         item.position = index + 2; // Start from 2 since Home is 1
         item.name = segment.charAt(0).toUpperCase() + segment.slice(1);
-        item.item = `https://syntaxengineer.com/${pathSegments.slice(0, index + 1).join("/")}`;
+        item.item = `https://chess.sauravx.com /${pathSegments.slice(0, index + 1).join("/")}`;
         return item;
     });
 
@@ -114,8 +114,8 @@ export function generateBreadcrumbData(url: string): string {
     homeItem["@type"] = "ListItem";
     homeItem.position = 1;
     homeItem.name = "Home";
-    homeItem.item = "https://syntaxengineer.com/";
-    
+    homeItem.item = "https://chess.sauravx.com /";
+
     breadcrumbs.unshift(homeItem);
 
     const breadcrumbData: Record<string, any> = {};

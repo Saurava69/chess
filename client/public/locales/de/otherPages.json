@@ -1,7 +1,7 @@
 {
     "news": {
         "title": "Zeitung",
-        "titleDescription": "Erhalte die neuesten Updates auf der SyntaxEngineer Plattform",
+        "titleDescription": "Erhalte die neuesten Updates auf der chess.sauravx.com Plattform",
         "error": "Beim Laden der Zeitung ist ein Fehler aufgetreten.",
         "article": {
             "unfound": "Dieser Artikel konnte nicht gefunden werden.",

@@ -34,13 +34,13 @@ function createAuth(database: mongo.Db) {
             requireEmailVerification: true,
             sendResetPassword: async ({ user, url }) => sendAccountEmail({
                 recipient: user.email,
-                subject: "Reset your SyntaxEngineer password",
-                message: "Please reset your SyntaxEngineer account's "
+                subject: "Reset your chess.sauravx.com password",
+                message: "Please reset your chess.sauravx.com account's "
                     + "password by clicking the button below:",
                 buttonLabel: "Reset Password",
                 buttonUrl: url,
                 plaintextFallback: "Please use the link to reset your"
-                    + ` SyntaxEngineer account's password: ${url}`
+                    + ` chess.sauravx.com account's password: ${url}`
             }),
             revokeSessionsOnPasswordReset: true
         },
@@ -48,12 +48,12 @@ function createAuth(database: mongo.Db) {
             autoSignInAfterVerification: true,
             sendVerificationEmail: async ({ user, url }) => sendAccountEmail({
                 recipient: user.email,
-                subject: "Verify your SyntaxEngineer account",
+                subject: "Verify your chess.sauravx.com account",
                 message: "Thank you for creating an account on SyntaxEngineer! "
                     + "Please verify your account by clicking the button below:",
                 buttonLabel: "Verify Account",
                 buttonUrl: url,
-                plaintextFallback: `Please verify your SyntaxEngineer account: ${url}`
+                plaintextFallback: `Please verify your chess.sauravx.com account: ${url}`
             })
         },
         socialProviders: {
@@ -70,11 +70,11 @@ function createAuth(database: mongo.Db) {
                 sendChangeEmailVerification: async (ctx) => sendAccountEmail({
                     recipient: ctx.newEmail,
                     subject: "Verify your new email address",
-                    message: "Please verify your SyntaxEngineer account's new"
+                    message: "Please verify your chess.sauravx.com account's new"
                         + " email address by clicking the button below:",
                     buttonLabel: "Verify Email Address",
                     buttonUrl: ctx.url,
-                    plaintextFallback: "Please verify your SyntaxEngineer account's"
+                    plaintextFallback: "Please verify your chess.sauravx.com account's"
                         + ` new email address: ${ctx.url}`
                 })
             },

@@ -1,5 +1,5 @@
 {
-  "name": "SyntaxEngineer Chess",
+  "name": "chess.sauravx.com Chess",
   "short_name": "SyntaxEngineer",
   "description": "Free chess analysis, game archive, and chess learning platform",
   "theme_color": "#47acff",
@@ -22,7 +22,7 @@
       "purpose": "any maskable"
     },
     {
-      "src": "/img/icons/icon-512x512.png", 
+      "src": "/img/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

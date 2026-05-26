@@ -12,13 +12,13 @@ export function renderPage(config: SSRConfig): string {
     const { title, description, preloadedState, scripts = [], styles = [] } = config;
 
     // Generate preloaded state script
-    const preloadedStateScript = preloadedState 
+    const preloadedStateScript = preloadedState
         ? `<script>window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, "\\u003c")};</script>`
         : "";
 
     // Generate script tags
     const scriptTags = scripts.map(src => `<script src="${src}"></script>`).join("\n    ");
-    
+
     // Generate style tags
     const styleTags = styles.map(href => `<link rel="stylesheet" href="${href}">`).join("\n    ");
 
@@ -43,12 +43,12 @@ export function renderPage(config: SSRConfig): string {
 
 // Enhanced route handler that ensures proper HTML delivery
 export function enhancedAppRouter(
-    scriptName: string, 
+    scriptName: string,
     config: Partial<SSRConfig> = {}
 ) {
     return (req: Request, res: Response) => {
         const defaultConfig: SSRConfig = {
-            title: "SyntaxEngineer Chess",
+            title: "chess.sauravx.com Chess",
             description: "Free chess analysis and learning platform",
             scripts: [`/${scriptName}.bundle.js`],
             ...config

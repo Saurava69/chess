@@ -1,6 +1,6 @@
-# 🏗️ Hosting SyntaxEngineer locally
+# 🏗️ Hosting chess.sauravx.com locally
 
-> This is a guide on how to get SyntaxEngineer running on your local machine.
+> This is a guide on how to get chess.sauravx.com running on your local machine.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ These are the environment variables that you can set when hosting SyntaxEngineer
 NODE_ENV="production"
 ```
 
-The environment that the app is running in. Can be one of two values: `production` (default) and `development`. In production, only requests with the `Host` header set to `SyntaxEngineer.com` are accepted. You can edit the hostname whitelist in `server/src/lib/security/whitelist.ts`.
+The environment that the app is running in. Can be one of two values: `production` (default) and `development`. In production, only requests with the `Host` header set to `chess.sauravx.com ` are accepted. You can edit the hostname whitelist in `server/src/lib/security/whitelist.ts`.
 
 ```toml
 PORT=8080
@@ -41,8 +41,7 @@ ORIGIN="http://localhost:8080"
 > Required
 
 The origin - URLs in emails are constructed using this, and the authentication uses it as a base URL.
-For example, `http://localhost:8080` or `https://SyntaxEngineer.com`.
-
+For example, `http://localhost:8080` 
 ```toml
 DATABASE_URI="mongodb://" # ...
 ```
@@ -88,8 +87,8 @@ ADS_PUBLISHER_ID="ca-pub-XXXXXXXXXXXXX"
 Your Google AdSense publisher ID, if you would like to enable advertisements. Note that advertisements will not display on local deployments.
 
 ```toml
-EMAIL_ACCOUNT="contact@SyntaxEngineer.com"
-AUTOMATED_EMAIL_ADDRESS="no-reply@SyntaxEngineer.com"
+EMAIL_ACCOUNT="contact@chess.sauravx.com "
+AUTOMATED_EMAIL_ADDRESS="no-reply@chess.sauravx.com "
 AUTOMATED_EMAIL_KEY="aaaa bbbb cccc dddd"
 ```
 
@@ -127,7 +126,7 @@ The server will begin listening on the port that you defined in the environment 
 
 ## Deploy with Docker
 
-You might find it easier to run SyntaxEngineer in a Docker container. The database will be created for you so you will not have to
+You might find it easier to run chess.sauravx.com in a Docker container. The database will be created for you so you will not have to
 specify a database URI.
 
 ### Build and start

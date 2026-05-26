@@ -12,7 +12,7 @@ const LanguagesDialog = lazy(() => import(
 
 function LoadingDialog() {
     return <Dialog>
-        <LoadingPlaceholder/>
+        <LoadingPlaceholder />
     </Dialog>;
 }
 
@@ -23,7 +23,7 @@ function Footer({ className, style }: FooterProps) {
         new Date().getFullYear()
     ), []);
 
-    const [ languagesOpen, setLanguagesOpen ] = useState(false);
+    const [languagesOpen, setLanguagesOpen] = useState(false);
 
     return <footer
         className={`${styles.wrapper} ${className}`}
@@ -32,7 +32,7 @@ function Footer({ className, style }: FooterProps) {
         <div className={styles.section}>
 
             <span className={styles.copyrightNotice}>
-                Copyright © {copyrightYear} SyntaxEngineer.com
+                Copyright © {copyrightYear} chess.sauravx.com
             </span>
 
             <span className={styles.copyrightNotice}>
@@ -66,7 +66,7 @@ function Footer({ className, style }: FooterProps) {
             </div>
         </div>
 
-        <Suspense fallback={<LoadingDialog/>}>
+        <Suspense fallback={<LoadingDialog />}>
             {languagesOpen && <LanguagesDialog
                 onClose={() => setLanguagesOpen(false)}
             />}

@@ -43,7 +43,7 @@ export function generateSEOMetaTags(seoData: SEOData, url: string): string {
     <meta property="og:image" content="${ogImage}">
     <meta property="og:url" content="${url}">
     <meta property="og:type" content="${ogType}">
-    <meta property="og:site_name" content="SyntaxEngineer Chess">
+    <meta property="og:site_name" content="chess.sauravx.com Chess">
     <meta property="og:locale" content="en_US">
     
     <!-- Twitter Card Meta Tags -->
@@ -96,7 +96,7 @@ export const seoDataMap: Record<string, SEOData> = {
         twitterCard: "summary_large_image"
     },
     archive: {
-        title: "Chess Game Archive - Store and Organize Your Games | SyntaxEngineer", 
+        title: "Chess Game Archive - Store and Organize Your Games | SyntaxEngineer",
         description: "Keep all your chess games organized in one place. Save, search, and review your games with our free chess game archive and database.",
         keywords: "chess archive, chess database, chess games collection, pgn viewer, chess game storage",
         ogType: "website"
@@ -122,8 +122,8 @@ export const seoDataMap: Record<string, SEOData> = {
         ogType: "blog"
     },
     signin: {
-        title: "Sign In - SyntaxEngineer Chess Platform",
-        description: "Sign in to your SyntaxEngineer account to access your chess games, analysis, and personalized chess learning experience.",
+        title: "Sign In - chess.sauravx.com Chess Platform",
+        description: "Sign in to your chess.sauravx.com account to access your chess games, analysis, and personalized chess learning experience.",
         keywords: "chess login, chess sign in, chess account",
         ogType: "website"
     },

@@ -1,8 +1,8 @@
 # ☕ Contributing
 
-If you'd like to contribute to the SyntaxEngineer platform, you can get started by reading this guide. Thank you for considering a contribution!
+If you'd like to contribute to the chess.sauravx.com platform, you can get started by reading this guide. Thank you for considering a contribution!
 
-## 🏰 The State of SyntaxEngineer
+## 🏰 The State of chess.sauravx.com 
 
 This is a project that I worked on throughout my spare time for 14 months. I learnt a lot of things on the go while building this, and it was (mostly) super fun!
 
@@ -85,4 +85,4 @@ Please be nice when discussing things in pull requests! 💙
 
 If you have found a security vulnerability, please report it responsibly! Some that do not cause that much damage can be opened as an issue, though if you have found a critical vulnerability that could, for example, affect the safety of user information, please instead send an email to:
 
-[contact@SyntaxEngineer.com](mailto:contact@SyntaxEngineer.com)
+[contact@chess.sauravx.com ](mailto:contact@chess.sauravx.com )

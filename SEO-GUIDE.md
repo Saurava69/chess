@@ -1,4 +1,4 @@
-# SEO Implementation Guide for SyntaxEngineer Chess
+# SEO Implementation Guide for chess.sauravx.com Chess
 
 This document outlines all the SEO improvements implemented to make your chess application discoverable by Google and other search engines, addressing the typical disadvantages of React applications.
 
@@ -120,8 +120,8 @@ This document outlines all the SEO improvements implemented to make your chess a
 ```bash
 # Submit your sitemap
 1. Visit Google Search Console
-2. Add your property: https://syntaxengineer.com
-3. Submit sitemap: https://syntaxengineer.com/sitemap.xml
+2. Add your property: https://chess.sauravx.com 
+3. Submit sitemap: https://chess.sauravx.com /sitemap.xml
 4. Monitor indexing status
 ```
 

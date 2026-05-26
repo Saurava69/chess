@@ -24,7 +24,7 @@ Allow: /legal
 Allow: /help
 
 # Sitemap location
-Sitemap: https://syntaxengineer.com/sitemap.xml
+Sitemap: https://chess.sauravx.com /sitemap.xml
 
 # Crawl delay for polite crawling
 Crawl-delay: 1
