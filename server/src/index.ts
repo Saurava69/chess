@@ -32,10 +32,14 @@ async function main() {
     app.use(cookieParser());
     app.use(hostnameWhitelist);
 
-    // Static assets — JS/CSS bundles must revalidate on every request
+    // Static assets
+    // HTML pages: always revalidate (prevents stale page/bundle mismatch)
+    // JS/CSS bundles: no-cache so code updates are picked up immediately
     const noCacheOptions = {
         setHeaders: (res: import("http").ServerResponse, path: string) => {
             if (/\.(js|css)$/.test(path)) {
+                res.setHeader("Cache-Control", "no-cache, must-revalidate");
+            } else if (/\.html$/.test(path)) {
                 res.setHeader("Cache-Control", "no-cache, must-revalidate");
             }
         }
