@@ -13,6 +13,13 @@ export type AIEvent =
 
 type OnEvent = (event: AIEvent) => void;
 
+// ─── Startup env-var check ───────────────────────────────────────────────────
+const REQUIRED = ["SAP_CLIENT_ID", "SAP_CLIENT_SECRET", "SAP_TOKEN_URL", "SAP_BASE_URL"] as const;
+const missing  = REQUIRED.filter(k => !process.env[k]);
+if (missing.length > 0) {
+    console.warn(`[aiCore] Missing env vars: ${missing.join(", ")} — AI features will return 500`);
+}
+
 // ─── Token cache ────────────────────────────────────────────────────────────
 let tokenCache: { accessToken: string; expiresAt: number } | null = null;
 

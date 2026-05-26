@@ -75,7 +75,8 @@ Return ONLY valid JSON — no markdown code fences, no extra text — in exactly
 
         res.json({ commentaries });
 
-    } catch {
+    } catch (err: unknown) {
+        console.error("[ai/coachBatch] callAI threw:", err instanceof Error ? err.message : err);
         res.status(500).json({ error: "AI processing failed" });
     }
 });

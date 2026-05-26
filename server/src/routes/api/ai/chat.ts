@@ -54,10 +54,12 @@ router.post(path, ...aiLimiter("chat"), express.json({ limit: "32kb" }), async (
             } else if (event.type === "complete") {
                 send({ type: "complete" });
             } else if (event.type === "error") {
+                console.error("[ai/chat] SAP error:", event.data.message);
                 send({ type: "error", message: "AI processing failed" });
             }
         });
-    } catch {
+    } catch (err: unknown) {
+        console.error("[ai/chat] streamAI threw:", err instanceof Error ? err.message : err);
         send({ type: "error", message: "AI processing failed" });
     }
 
